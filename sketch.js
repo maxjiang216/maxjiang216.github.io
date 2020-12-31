@@ -40,7 +40,7 @@ function mouseClicked() {
         game_state = 2;
     }
     else if (game_state == 2) {
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < player.length; i++) {
             if (in_button(15+i*75, 140, 85+i*75, 240)) {
                 play_card(i);
             }
