@@ -1,7 +1,8 @@
 var count = 0;
+var screenX = 600, screenY = 520;
 
 function setup() {
-    createCanvas(400, 400);
+    createCanvas(screenX, screenY);
     frameRate(60);
 }
 
@@ -29,7 +30,7 @@ function draw() {
 }
 
 function mouseClicked() {
-    if (game_state === 0 && in_button(100, 170, 300, 210)) { // start game
+    if (game_state === 0 && in_button(100, 170, 200, 40)) { // start game
         clear();
         game_state = 1;
     }
@@ -40,9 +41,16 @@ function mouseClicked() {
         game_state = 2;
     }
     else if (game_state == 2) {
-        for (var i = 0; i < player.length; i++) {
-            if (in_button(15+i*75, 140, 85+i*75, 240)) {
-                play_card(i);
+        if (player.length == 1) {
+            if (in_button((screenX-70)/2, screenY-200, 70, 100, 10)) {
+                    play_card(0);
+                }
+        }
+        else {
+            for (var i = 0; i < player.length; i++) {
+                if (in_button(15+i*(screenX-100)/(player.length-1), screenY-200, 70, 100)) {
+                    play_card(i);
+                }
             }
         }
     }
@@ -58,10 +66,10 @@ function mouseClicked() {
     }
 }
 
-function in_button(x1, y1, x2, y2) { // checks is mouse is in the defined rectangle
+function in_button(x, y, w, h) { // checks is mouse is in the defined rectangle
     // make a rounded corner version???
-    if (mouseX >= x1 && mouseX <= x2 &&
-        mouseY >= y1 && mouseY <= y2) {
+    if (mouseX >= x && mouseX <= x+w &&
+        mouseY >= y && mouseY <= y+h) {
         return true;
     }
     return false;
@@ -69,11 +77,15 @@ function in_button(x1, y1, x2, y2) { // checks is mouse is in the defined rectan
 
 function shuff() {
     deck = [];
-    for (var i = 1; i <= 13; ++i) {
-       for (var j = 0; j < 4; ++j) {
+    for (var i = 3; i <= 13; ++i) {
+        for (var j = 0; j < 4; ++j) {
             deck.push(i);
         }
     }
+    for (var j = 0; j < 3; ++j) {
+        deck.push(1);
+    }
+    deck.push(2);
     var r, temp;
     for (var i = 1; i < deck.length; i++) {
         r = Math.floor(Math.random() * i);
@@ -86,11 +98,11 @@ function shuff() {
 function deal() {
     player = [];
     cpu = [];
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 16; i++) {
         player.push(deck[0]);
         deck = deck.slice(1,deck.length);
     }
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < 16; i++) {
         cpu.push(deck[0]);
         deck = deck.slice(1,deck.length);
     }
@@ -98,9 +110,23 @@ function deal() {
 
 function draw_hand() {
     textAlign(CENTER);
-    for (var i = 0; i < player.length; i++) {
-        rect(15+i*75, 140, 70, 100, 20);
-        text(player[i], 50+i*75, 200);
+    if (player.length == 1) {
+        rect((screenX-70)/2, screenY-200, 70, 100, 10);
+        text(player[0], 35+(screenX-70)/2, screenY-137);
+    }
+    else {
+        for (var i = 0; i < player.length; i++) {
+            rect(15+i*(screenX-100)/(player.length-1), screenY-200, 70, 100, 10);
+            text(player[i], 50+i*(screenX-100)/(player.length-1), screenY-137);
+        }
+        if ((screenX-100)/(player.length-1) < 70) {
+            for (var i = 0; i < player.length; i++) {
+                if (in_button(15+i*(screenX-100)/(player.length-1), screenY-200, 70, 100)) {
+                    rect(15+i*(screenX-100)/(player.length-1), screenY-200, 70, 100, 10);
+            text(player[i], 50+i*(screenX-100)/(player.length-1), screenY-137);
+                }
+            }
+        }
     }
 }
 
