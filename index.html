@@ -13,16 +13,16 @@
     </style>
     <script>
         game_state = 0;
-        deck = [];
-        player = [];
-        cpu = [];
-        wins = 0;
-        losses = 0;
+        deck = []; // deck
+        player = []; // player's hand
+        current = []; // last play
+        curr_type = [];
+        cpu = []; // cpu's hand
+        turn = true; // true=player, false=cpu;
     </script>
 </head>
 
 <body>
-    <h1>Welcome to my website</h1>
     <main>
         <script src=https://CDN.JSDelivr.net/p5.js/latest/mainfile></script>
         <script src=sketch.js></script>
