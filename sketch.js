@@ -1,6 +1,6 @@
 var count = 0;
 var screenX = 600, screenY = 520;
-var start_button = {x: screenX/2-100, y: 170, w: 200, h: 40, name: "Start Game"}, play_selected_button = {x: screenX/2-110, y: screenY-80, w: 220, h: 60, name: "Play selected"}, pass_button = {x: screenX-100, y: screenY-80, w: 85, h: 60, name: "Pass"};
+var start_button = {x: screenX/2-100, y: 170, w: 200, h: 40, name: "Start Game"}, play_selected_button = {x: screenX/2-110, y: screenY-80, w: 220, h: 60, name: "Play selected"}, pass_button = {x: screenX-100, y: screenY-80, w: 85, h: 60, name: "Pass"}, clear_button = {x: 15, y: screenY-80, w: 85, h: 60, name: "Clear"};
 
 function setup() {
     createCanvas(screenX, screenY);
@@ -18,7 +18,7 @@ function draw() {
         text("Welcome", screenX/2, 200);
         text("click anywhere to begin", screenX/2, 300);
     }
-    else if (game_state == 2 || game_state == 3) {
+    else if (game_state == 2) {
         clear();
         text("War", screenX/2, 100);
         textSize(25);
@@ -28,6 +28,12 @@ function draw() {
         draw_hand(false);
         draw_button(play_selected_button);
         draw_button(pass_button);
+        draw_button(clear_button);
+    }
+    else if (game_state == 3) {
+        clear();
+        text("Game Over", screenX/2, 100);
+        text("click anywhere to continue", screenX/2, 300);
     }
     else if (game_state == 4) {
         clear();
@@ -96,9 +102,16 @@ function mouseClicked() {
             turn = false;
             cpu_choose();
         }
+        if (in_button(clear_button)) {
+            for (var i = 0; i < player.length; i++) {
+                player[i].state = false;
+            }
+        }
     }
     else if (game_state == 3) {
         clear();
+        current = [];
+        curr_type = [0,0,0];
         game_state = 4;
     }
     else if (game_state == 4) {
@@ -183,10 +196,12 @@ function deal() {
         player.push(deck[0]);
         deck = deck.slice(1,deck.length);
     }
+    player = sort_hand(player);
     for (i = 0; i < 16; i++) {
         cpu.push(deck[0]);
         deck = deck.slice(1,deck.length);
     }
+    cpu = sort_hand(cpu);
     // determine initiative
     for (i = 3; i <= 15; i++) {
         if (find_card((i-1)%13+1, 0)) { // player
@@ -329,7 +344,7 @@ function draw_hand(type = true) {
         }
         else {
             for (var i = 0; i < current.length; i++) {
-                draw_card(current[i], 50+i*(screenX-150)/(current.length-1), 1750, false);
+                draw_card(current[i], 50+i*(screenX-150)/(current.length-1), 175, false);
             }
             if ((screenX-150)/(current.length-1) < 50) {
                 for (var i = current.length-1; i >= 0; i--) {
@@ -343,24 +358,488 @@ function draw_hand(type = true) {
     }
 }
 
+function sort_hand(lst) {
+    var temp_lst = lst;
+    for (var i = lst.length-1; i > 0; i--) { // bubble sort because I'm lazy
+        for (var j = 0; j < i; j++) {
+            if (trumps(lst[j].number, lst[j+1].number)) { // switch
+                var temp = temp_lst[j];
+                temp_lst[j] = temp_lst[j+1];
+                temp_lst[j+1] = temp;
+            }
+        }
+    }
+    return temp_lst;
+}
+
 function play_type(lst) {
     // also checks validity?
     // [a,b]: [type, length, rank]
+    // rank based on largest number (since 23456 < JQKA2 but 2 > J)
     // 0: new
     // 1: single
     // 2: double
     // 3: triple
     // 4: bomb
     // 5: full house
-    if (lst.length == 0) {
+    lst = sort_hand(lst);
+    if (lst.length == 0) { // fresh
         return [0, 0, 0];
     }
-    if (lst.length == 1) {
+    if (lst.length == 1) { // single
         return [1, 1, lst[0].number];
     }
-    if (lst.length == 2) {
+    if (lst.length == 2) { // double
         if (lst[0].number == lst[1].number) {
             return [2, 1, lst[0].number];
+        }
+    }
+    if (lst.length == 3) {
+        if (lst[0].number == lst[1].number &&
+           lst[1].number == lst[2].number &&
+           lst[2].number == 1) { // A-bomb
+            return [4, 0, 1];
+        }
+        if (lst[0].number == lst[1].number &&
+           lst[1].number == lst[2].number) { // A-bomb
+            return [3, 1, lst[0].number];
+        }
+    }
+    if (lst.length == 4) {
+        if (lst[0].number == lst[1].number &&
+            lst[1].number%13+1 == lst[2].number &&
+            lst[2].number == lst[3].number) { // double 2-chain
+            return [2, 2, lst[2].number];
+        }
+        if (lst[0].number == lst[1].number &&
+            lst[1].number == lst[2].number &&
+            lst[2].number == lst[3].number) { // non-A bomb without add-on
+            return [4, 0, lst[0].number];
+        }
+        if ((lst[0].number == lst[1].number &&
+           lst[1].number == lst[2].number &&
+           lst[2].number == 1) ||
+            (lst[1].number == lst[2].number &&
+           lst[2].number == lst[3].number &&
+           lst[3].number == 1)) { // A-bomb with add-on (1112, a111)
+            return [4, 1, 1];
+        }
+    }
+    if (lst.length == 5) {
+        if (lst[0].number+1 == lst[1].number &&
+             lst[1].number+1 == lst[2].number &&
+             lst[2].number%13+1 == lst[3].number &&
+             lst[3].number%13+1 == lst[4].number) { // single 5-chain
+            return [1, 5, lst[4].number]
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 1 &&
+            lst[4].number == 2) { // A, 2, 3, 4, 5
+            return [1, 5, 5];
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 2) { // 2, 3, 4, 5, 6
+            return [1, 5, 6];
+        }
+        if ((lst[0].number == lst[1].number &&
+             lst[1].number == lst[2].number &&
+             lst[2].number == lst[3].number) ||
+            (lst[1].number == lst[2].number &&
+             lst[2].number == lst[3].number &&
+             lst[3].number == lst[4].number)) { // non-A bomb with add-on (aaaab, abbbb)
+            return [4, 1, lst[1].number];
+        }
+        if ((lst[0].number == lst[1].number &&
+             lst[2].number == lst[3].number &&
+             lst[3].number == lst[4].number) ||
+            (lst[0].number == lst[1].number &&
+             lst[1].number == lst[2].number &&
+             lst[3].number == lst[4].number)) { // full house (aabbb, aaabb)
+            return [5, 0, lst[2].number];
+        }
+    }
+    if (lst.length == 6) {
+        if (lst[0].number+1 == lst[1].number &&
+             lst[1].number+1 == lst[2].number &&
+             lst[2].number+1 == lst[3].number &&
+             lst[3].number%13+1 == lst[4].number &&
+             lst[4].number%13+1 == lst[5].number) { // single 6-chain
+            return [1, 6, lst[5].number];
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 1 &&
+            lst[5].number == 2) { // A, 2, 3, 4, 5, 6
+            return [1, 6, 6];
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 7 &&
+            lst[5].number == 2) { // 2, 3, 4, 5, 6, 7
+            return [1, 6, 7];
+        }
+        if (lst[0].number == lst[1].number &&
+            lst[1].number+1 == lst[2].number &&
+            lst[2].number == lst[3].number &&
+            lst[3].number%13+1 == lst[4].number &&
+            lst[4].number == lst[5].number) { // double 3-chain
+            return [2, 3, lst[4].number];
+        }
+        if (lst[0].number == lst[1].number &&
+            lst[1].number == lst[2].number &&
+            lst[2].number%13+1 == lst[3].number &&
+            lst[3].number == lst[4].number &&
+            lst[4].number == lst[5].number) { // triple 2-chain
+            return [3, 2, lst[3].number];
+        }
+    }
+    if (lst.length == 7) {
+        if (lst[0].number+1 == lst[1].number &&
+             lst[1].number+1 == lst[2].number &&
+             lst[2].number+1 == lst[3].number &&
+             lst[3].number+1 == lst[4].number &&
+             lst[4].number%13+1 == lst[5].number &&
+             lst[5].number%13+1 == lst[6].number) { // single 7-chain
+            return [1, 7, lst[6].number];
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 7 &&
+            lst[5].number == 1 &&
+            lst[6].number == 2) { // A, 2, 3, 4, 5, 6, 7
+            return [1, 7, 7];
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 7 &&
+            lst[5].number == 8 &&
+            lst[6].number == 2) { // 2, 3, 4, 5, 6, 7, 8
+            return [1, 7, 8];
+        }
+    }
+    if (lst.length == 8) {
+        if (lst[0].number+1 == lst[1].number &&
+             lst[1].number+1 == lst[2].number &&
+             lst[2].number+1 == lst[3].number &&
+             lst[3].number+1 == lst[4].number &&
+             lst[4].number+1 == lst[5].number &&
+             lst[5].number%13+1 == lst[6].number &&
+             lst[6].number%13+1 == lst[7].number) { // single 8-chain
+            return [1, 8, lst[7].number];
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 7 &&
+            lst[5].number == 8 &&
+            lst[6].number == 1 &&
+            lst[7].number == 2) { // A, 2, 3, 4, 5, 6, 7, 8
+            return [1, 8, 8];
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 7 &&
+            lst[5].number == 8 &&
+            lst[6].number == 9 &&
+            lst[7].number == 2) { // 2, 3, 4, 5, 6, 7, 8, 9
+            return [1, 8, 9];
+        }
+        if (lst[0].number == lst[1].number &&
+             lst[1].number+1 == lst[2].number &&
+             lst[2].number == lst[3].number &&
+             lst[3].number+1 == lst[4].number &&
+             lst[4].number == lst[5].number &&
+             lst[5].number%13+1 == lst[6].number &&
+             lst[6].number == lst[7].number) { // double 4-chain
+            return [2, 4, lst[6].number];
+        }
+    }
+    if (lst.length == 9) {
+        if (lst[0].number+1 == lst[1].number &&
+             lst[1].number+1 == lst[2].number &&
+             lst[2].number+1 == lst[3].number &&
+             lst[3].number+1 == lst[4].number &&
+             lst[4].number+1 == lst[5].number &&
+             lst[5].number+1 == lst[6].number &&
+             lst[6].number%13+1 == lst[7].number &&
+             lst[7].number%13+1 == lst[8].number) { // single 9-chain
+            return [1, 9, lst[8].number];
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 7 &&
+            lst[5].number == 8 &&
+            lst[6].number == 9 &&
+            lst[7].number == 1 &&
+            lst[8].number == 2) { // A, 2, 3, 4, 5, 6, 7, 8, 9
+            return [1, 9, 9];
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 7 &&
+            lst[5].number == 8 &&
+            lst[6].number == 9 &&
+            lst[7].number == 10 &&
+            lst[8].number == 2) { // 2, 3, 4, 5, 6, 7, 8, 9, 10
+            return [1, 9, 10];
+        }
+        if (lst[0].number == lst[1].number &&
+             lst[1].number == lst[2].number &&
+             lst[2].number+1 == lst[3].number &&
+             lst[3].number == lst[4].number &&
+             lst[4].number == lst[5].number &&
+             lst[5].number%13+1 == lst[6].number &&
+             lst[6].number == lst[7].number &&
+             lst[7].number == lst[8].number) { // triple 3-chain
+            return [3, 3, lst[6].number];
+        }
+    }
+    if (lst.length == 10) {
+        if (lst[0].number+1 == lst[1].number &&
+             lst[1].number+1 == lst[2].number &&
+             lst[2].number+1 == lst[3].number &&
+             lst[3].number+1 == lst[4].number &&
+             lst[4].number+1 == lst[5].number &&
+             lst[5].number+1 == lst[6].number &&
+             lst[6].number+1 == lst[7].number &&
+             lst[7].number%13+1 == lst[8].number &&
+             lst[8].number%13+1 == lst[9].number) { // single 10-chain
+            return [1, 10, lst[9].number];
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 7 &&
+            lst[5].number == 8 &&
+            lst[6].number == 9 &&
+            lst[7].number == 10 &&
+            lst[8].number == 1 &&
+            lst[9].number == 2) { // A, 2, 3, 4, 5, 6, 7, 8, 9, 10
+            return [1, 10, 10];
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 7 &&
+            lst[5].number == 8 &&
+            lst[6].number == 9 &&
+            lst[7].number == 10 &&
+            lst[8].number == 11 &&
+            lst[9].number == 2) { // 2, 3, 4, 5, 6, 7, 8, 9, 11
+            return [1, 10, 11];
+        }
+        if (lst[0].number == lst[1].number &&
+             lst[1].number+1 == lst[2].number &&
+             lst[2].number == lst[3].number &&
+             lst[3].number+1 == lst[4].number &&
+             lst[4].number == lst[5].number &&
+             lst[5].number+1 == lst[6].number &&
+             lst[6].number == lst[7].number &&
+             lst[7].number%13+1 == lst[8].number &&
+             lst[8].number == lst[9].number) { // double 5-chain
+            return [2, 5, lst[8].number];
+        }
+    }
+    if (lst.length == 11) {
+        if (lst[0].number+1 == lst[1].number &&
+             lst[1].number+1 == lst[2].number &&
+             lst[2].number+1 == lst[3].number &&
+             lst[3].number+1 == lst[4].number &&
+             lst[4].number+1 == lst[5].number &&
+             lst[5].number+1 == lst[6].number &&
+             lst[6].number+1 == lst[7].number &&
+             lst[7].number+1 == lst[8].number &&
+             lst[8].number%13+1 == lst[9].number &&
+             lst[9].number%13+1 == lst[10].number) { // single 11-chain
+            return [1, 11, lst[10].number];
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 7 &&
+            lst[5].number == 8 &&
+            lst[6].number == 9 &&
+            lst[7].number == 10 &&
+            lst[8].number == 11 &&
+            lst[9].number == 1 &&
+            lst[10].number == 2) { // A, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+            return [1, 11, 11];
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 7 &&
+            lst[5].number == 8 &&
+            lst[6].number == 9 &&
+            lst[7].number == 10 &&
+            lst[8].number == 11 &&
+            lst[9].number == 12 &&
+            lst[10].number == 2) { // 2, 3, 4, 5, 6, 7, 8, 9, 11, 12
+            return [1, 11, 12];
+        }
+    }
+    if (lst.length == 12) {
+        if (lst[0].number+1 == lst[1].number &&
+             lst[1].number+1 == lst[2].number &&
+             lst[2].number+1 == lst[3].number &&
+             lst[3].number+1 == lst[4].number &&
+             lst[4].number+1 == lst[5].number &&
+             lst[5].number+1 == lst[6].number &&
+             lst[6].number+1 == lst[7].number &&
+             lst[7].number+1 == lst[8].number &&
+             lst[8].number+1 == lst[9].number &&
+             lst[9].number%13+1 == lst[10].number &&
+             lst[10].number%13+1 == lst[11].number) { // single 12-chain
+            return [1, 12, lst[11].number];
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 7 &&
+            lst[5].number == 8 &&
+            lst[6].number == 9 &&
+            lst[7].number == 10 &&
+            lst[8].number == 11 &&
+            lst[9].number == 12 &&
+            lst[10].number == 1 &&
+            lst[11].number == 2) { // A, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+            return [1, 12, 12];
+        }
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 7 &&
+            lst[5].number == 8 &&
+            lst[6].number == 9 &&
+            lst[7].number == 10 &&
+            lst[8].number == 11 &&
+            lst[9].number == 12 &&
+            lst[10].number == 13 &&
+            lst[11].number == 2) { // 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13
+            return [1, 12, 13];
+        }
+        if (lst[0].number == lst[1].number &&
+             lst[1].number+1 == lst[2].number &&
+             lst[2].number == lst[3].number &&
+             lst[3].number+1 == lst[4].number &&
+             lst[4].number == lst[5].number &&
+             lst[5].number+1 == lst[6].number &&
+             lst[6].number == lst[7].number &&
+             lst[7].number+1 == lst[8].number &&
+             lst[8].number == lst[9].number &&
+             lst[9].number%13+1 == lst[10].number &&
+             lst[10].number == lst[11].number) { // double 6-chain
+            return [2, 6, lst[10].number];
+        }
+        if (lst[0].number == lst[1].number &&
+             lst[1].number == lst[2].number &&
+             lst[2].number+1 == lst[3].number &&
+             lst[3].number == lst[4].number &&
+             lst[4].number == lst[5].number &&
+             lst[5].number+1 == lst[6].number &&
+             lst[6].number == lst[7].number &&
+             lst[7].number == lst[8].number &&
+             lst[8].number%13+1 == lst[9].number &&
+             lst[9].number == lst[10].number &&
+             lst[10].number == lst[11].number) { // triple 4-chain
+            return [3, 4, lst[9].number];
+        }
+    }
+    if (lst.length == 13) {
+        if (lst[0].number == 3 &&
+            lst[1].number == 4 &&
+            lst[2].number == 5 &&
+            lst[3].number == 6 &&
+            lst[4].number == 7 &&
+            lst[5].number == 8 &&
+            lst[6].number == 9 &&
+            lst[7].number == 10 &&
+            lst[8].number == 11 &&
+            lst[9].number == 12 &&
+            lst[10].number == 13 &&
+            lst[11].number == 1 &&
+            lst[12].number == 2) { // 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, A, 2
+            return [1, 13, 2];
+        }
+    }
+    if (lst.length == 14) {
+        if (lst[0].number == lst[1].number &&
+            lst[1].number+1 == lst[2].number &&
+            lst[2].number == lst[3].number &&
+            lst[3].number+1 == lst[4].number &&
+            lst[4].number == lst[5].number &&
+            lst[5].number+1 == lst[6].number &&
+            lst[6].number == lst[7].number &&
+            lst[7].number+1 == lst[8].number &&
+            lst[8].number == lst[9].number &&
+            lst[9].number+1 == lst[10].number &&
+            lst[10].number == lst[11].number &&
+            lst[11].number%13+1 == lst[12].number &&
+            lst[12].number == lst[13].number) { // double 7-chain
+            return [2, 7, lst[12].number];
+        }
+    }
+    if (lst.length == 15) {
+        if (lst[0].number == lst[1].number &&
+            lst[1].number == lst[2].number &&
+            lst[2].number+1 == lst[3].number &&
+            lst[3].number == lst[4].number &&
+            lst[4].number == lst[5].number &&
+            lst[5].number+1 == lst[6].number &&
+            lst[6].number == lst[7].number &&
+            lst[7].number == lst[8].number &&
+            lst[8].number+1 == lst[9].number &&
+            lst[9].number == lst[10].number &&
+            lst[10].number == lst[11].number &&
+            lst[11].number%13+1 == lst[12].number &&
+            lst[12].number == lst[13].number &&
+            lst[13].number == lst[14].number) { // triple 5-chain
+            return [3, 5, lst[12].number];
+        }
+    }
+    if (lst.length == 16) {
+        if (lst[0].number == lst[1].number &&
+            lst[1].number+1 == lst[2].number &&
+            lst[2].number == lst[3].number &&
+            lst[3].number+1 == lst[4].number &&
+            lst[4].number == lst[5].number &&
+            lst[5].number+1 == lst[6].number &&
+            lst[6].number == lst[7].number &&
+            lst[7].number+1 == lst[8].number &&
+            lst[8].number == lst[9].number &&
+            lst[9].number+1 == lst[10].number &&
+            lst[10].number == lst[11].number &&
+            lst[11].number+1 == lst[12].number &&
+            lst[12].number == lst[13].number &&
+            lst[13].number%13+1 == lst[14].number &&
+            lst[14].number == lst[15].number) { // double 8-chain
+            return [2, 8, lst[14].number];
         }
     }
     return [-1, -1, -1]; // invalid move;
@@ -402,7 +881,8 @@ function valid_play(lst) {
         return false; // invalid move
     }
     if (curr_type[0] == 0 ||
-       (curr_type[0] == lst[0] && curr_type[1] == lst[1] && trumps(lst[2], curr_type[2]))) {
+       (curr_type[0] == lst[0] && curr_type[1] == lst[1] && trumps(lst[2], curr_type[2])) ||
+       (lst[0] == 4 && !(curr_type[0] == 4 && !trumps(lst[2], curr_type[2])))) { // fresh, normal, bomb
         return true; // valid
     }
     return false; // incompatible / too small 
@@ -442,17 +922,109 @@ function play_cards() {
         }
     }
     turn = !turn;
+    console.log(current);
 }
-
+// make find chain function
 function cpu_choose() {
     if (curr_type[0] == 0) { // fresh
         cpu[0].state = true;
     }
     else if (curr_type[0] == 1) { // single
         for (var i = 0; i < cpu.length; i++) {
-            if (valid_play([1,1,cpu[i].number])) {
+            if (valid_play(play_type([cpu[i]]))) {
                 cpu[i].state = true;
                 break;
+            }
+        }
+    }
+    else if (curr_type[0] == 2) { // double
+        if (curr_type[1] == 1) { // 1-chain
+            for (var i = 0; i < cpu.length-1; i++) {
+                if (valid_play(play_type([cpu[i],cpu[i+1]]))) {
+                    cpu[i].state = true;
+                    cpu[i+1].state = true;
+                    break;
+                }
+            }
+        }
+        else if (curr_type[1] == 2) { // 2-chain
+            for (var i = 0; i < cpu.length-3; i++) {
+                if (valid_play(play_type([cpu[i],cpu[i+1],cpu[i+2],cpu[i+3]]))) { // aabb
+                    cpu[i].state = true;
+                    cpu[i+1].state = true;
+                    cpu[i+2].state = true;
+                    cpu[i+3].state = true;
+                    break;
+                }
+                else if (i < cpu.length-4 &&
+                         valid_play(play_type([cpu[i],cpu[i+1],cpu[i+3],cpu[i+4]]))) { // aa(a)bb
+                    cpu[i].state = true;
+                    cpu[i+1].state = true;
+                    cpu[i+3].state = true;
+                    cpu[i+4].state = true;
+                    break;
+                }
+                else if (i < cpu.length-5 &&
+                         valid_play(play_type([cpu[i],cpu[i+1],cpu[i+4],cpu[i+5]]))) { // aa(aa)bb
+                    cpu[i].state = true;
+                    cpu[i+1].state = true;
+                    cpu[i+4].state = true;
+                    cpu[i+5].state = true;
+                    break;
+                }
+            }
+        }
+    }
+    else if (curr_type[0] == 3) { // triple
+        for (var i = 0; i < cpu.length-2; i++) {
+            if (valid_play(play_type([cpu[i],cpu[i+1],cpu[i+2]]))) {
+                cpu[i].state = true;
+                cpu[i+1].state = true;
+                cpu[i+2].state = true;
+                break;
+            }
+        } 
+    }
+    else if (curr_type[0] == 4) { // bomb
+        for (var i = 0; i < cpu.length-2; i++) {
+            if (i < cpu.length-3 &&
+                valid_play(play_type([cpu[i],cpu[i+1],cpu[i+2],cpu[i+3]]))) { // non-A bomb
+                cpu[i].state = true;
+                cpu[i+1].state = true;
+                cpu[i+2].state = true;
+                cpu[i+3].state = true;
+                break;
+            }
+            if (valid_play(play_type([cpu[i],cpu[i+1],cpu[i+2]]))) { // A-bomb
+                cpu[i].state = true;
+                cpu[i+1].state = true;
+                cpu[i+2].state = true;
+                break;
+            }
+        }
+    }
+    else if (curr_type[0] == 5) { // full house
+        var done = false;
+        for (var i = 0; i < cpu.length-2; i++) {
+            if (cpu[i].number == cpu[i+1].number &&
+                cpu[i+1].number == cpu[i+2].number &&
+                trumps(cpu[i].number, curr_type[2])) { // valid triple
+                console.log(cpu[i]);
+                for (var j = 0; j < cpu.length-1; j++) {
+                    if ((j < i-1 || j > i+2) &&
+                        cpu[j].number == cpu[j+1].number) {
+                        cpu[j].state = true;
+                        cpu[j+1].state = true;
+                        cpu[i].state = true;
+                        cpu[i+1].state = true;
+                        cpu[i+2].state = true;
+                        done = true;
+                        break;
+                    }
+                }
+                if (done) {
+                    break;
+                }
             }
         }
     }
