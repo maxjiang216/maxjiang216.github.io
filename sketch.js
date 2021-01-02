@@ -428,9 +428,9 @@ function play_type(lst) {
     if (lst.length == 5) {
         if (lst[0].number+1 == lst[1].number &&
              lst[1].number+1 == lst[2].number &&
-             lst[2].number%13+1 == lst[3].number &&
+             lst[2].number+1 == lst[3].number &&
              lst[3].number%13+1 == lst[4].number) { // single 5-chain
-            return [1, 5, lst[4].number]
+            return [1, 5, lst[4].number] // No J, Q, K, A, 2
         }
         if (lst[0].number == 3 &&
             lst[1].number == 4 &&
@@ -467,7 +467,7 @@ function play_type(lst) {
         if (lst[0].number+1 == lst[1].number &&
              lst[1].number+1 == lst[2].number &&
              lst[2].number+1 == lst[3].number &&
-             lst[3].number%13+1 == lst[4].number &&
+             lst[3].number+1 == lst[4].number &&
              lst[4].number%13+1 == lst[5].number) { // single 6-chain
             return [1, 6, lst[5].number];
         }
@@ -507,7 +507,7 @@ function play_type(lst) {
              lst[1].number+1 == lst[2].number &&
              lst[2].number+1 == lst[3].number &&
              lst[3].number+1 == lst[4].number &&
-             lst[4].number%13+1 == lst[5].number &&
+             lst[4].number+1 == lst[5].number &&
              lst[5].number%13+1 == lst[6].number) { // single 7-chain
             return [1, 7, lst[6].number];
         }
@@ -536,7 +536,7 @@ function play_type(lst) {
              lst[2].number+1 == lst[3].number &&
              lst[3].number+1 == lst[4].number &&
              lst[4].number+1 == lst[5].number &&
-             lst[5].number%13+1 == lst[6].number &&
+             lst[5].number+1 == lst[6].number &&
              lst[6].number%13+1 == lst[7].number) { // single 8-chain
             return [1, 8, lst[7].number];
         }
@@ -577,7 +577,7 @@ function play_type(lst) {
              lst[3].number+1 == lst[4].number &&
              lst[4].number+1 == lst[5].number &&
              lst[5].number+1 == lst[6].number &&
-             lst[6].number%13+1 == lst[7].number &&
+             lst[6].number+1 == lst[7].number &&
              lst[7].number%13+1 == lst[8].number) { // single 9-chain
             return [1, 9, lst[8].number];
         }
@@ -622,7 +622,7 @@ function play_type(lst) {
              lst[4].number+1 == lst[5].number &&
              lst[5].number+1 == lst[6].number &&
              lst[6].number+1 == lst[7].number &&
-             lst[7].number%13+1 == lst[8].number &&
+             lst[7].number+1 == lst[8].number &&
              lst[8].number%13+1 == lst[9].number) { // single 10-chain
             return [1, 10, lst[9].number];
         }
@@ -671,7 +671,7 @@ function play_type(lst) {
              lst[5].number+1 == lst[6].number &&
              lst[6].number+1 == lst[7].number &&
              lst[7].number+1 == lst[8].number &&
-             lst[8].number%13+1 == lst[9].number &&
+             lst[8].number+1 == lst[9].number &&
              lst[9].number%13+1 == lst[10].number) { // single 11-chain
             return [1, 11, lst[10].number];
         }
@@ -712,7 +712,7 @@ function play_type(lst) {
              lst[6].number+1 == lst[7].number &&
              lst[7].number+1 == lst[8].number &&
              lst[8].number+1 == lst[9].number &&
-             lst[9].number%13+1 == lst[10].number &&
+             lst[9].number+1 == lst[10].number &&
              lst[10].number%13+1 == lst[11].number) { // single 12-chain
             return [1, 12, lst[11].number];
         }
@@ -784,8 +784,8 @@ function play_type(lst) {
             lst[9].number == 12 &&
             lst[10].number == 13 &&
             lst[11].number == 1 &&
-            lst[12].number == 2) { // 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, A, 2
-            return [1, 13, 2];
+            lst[12].number == 2) { // 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, A
+            return [1, 13, 1];
         }
     }
     if (lst.length == 14) {
@@ -923,82 +923,105 @@ function play_cards() {
     }
     turn = !turn;
     console.log(current);
+    console.log(curr_type);
 }
-// make find chain function
+function find_chain(lst, type = 1) { // returns list indicating which numbers have at least (type) of that number
+    // input is lst of cards
+    
+    //lst = sort_hand(lst); // if sorts, indexes will make no sense
+    var out = [];
+    for (var i = 0; i <= 13; i++) {
+        out.push(-1);
+    }
+    for (var i = 0; i < lst.length-type+1; i++) {
+        var match = true, curr = lst[i].number;
+        for (var j = i+1; j < i+type; j++) {
+            if (lst[j].number != curr) {
+                match = false;
+                break;
+            }
+        }
+        if (match) {
+            out[curr] = max(out[curr],i); // returns last index where (type) of that number is found
+        }
+    }
+    console.log(lst);
+    console.log(out);
+    return out;
+}
+
+
 function cpu_choose() {
     if (curr_type[0] == 0) { // fresh
         cpu[0].state = true;
     }
     else if (curr_type[0] == 1) { // single
-        for (var i = 0; i < cpu.length; i++) {
-            if (valid_play(play_type([cpu[i]]))) {
-                cpu[i].state = true;
-                break;
+        if (curr_type[1] == 1) {
+            for (var i = 0; i < cpu.length; i++) {
+                if (valid_play(play_type([cpu[i]]))) {
+                    cpu[i].state = true;
+                    break;
+                }
+            }
+        }
+        else {
+            // chain
+            var avail = find_chain(cpu);
+            // curr_type[1] might be 1 (biggest), but no plays in this case anyway
+            for (var i = max(curr_type[1],curr_type[2]); i <= 14; i++) { // iterate by largest card in chain
+                var match = true;
+                for (var j = i; j > i-curr_type[1]; j--) {
+                    if (avail[(j-1)%13+1] == -1) {
+                        match = false;
+                        break;
+                    }
+                }
+                if (match && trumps(i, curr_type[2])) { // only check if top card trumps current top card (2-A can only be played once)
+                    for (j = i; j > i-curr_type[1]; j--) {
+                        cpu[avail[(j-1)%13+1]].state = true;
+                    }
+                    break;
+                }
             }
         }
     }
     else if (curr_type[0] == 2) { // double
-        if (curr_type[1] == 1) { // 1-chain
-            for (var i = 0; i < cpu.length-1; i++) {
-                if (valid_play(play_type([cpu[i],cpu[i+1]]))) {
-                    cpu[i].state = true;
-                    cpu[i+1].state = true;
+        var avail = find_chain(cpu, 2);
+        // curr_type[1] might be 1 (biggest), but no plays in this case anyway
+        for (var i = max(curr_type[1],curr_type[2]); i <= 14; i++) { // iterate by largest card in chain
+            var match = true;
+            for (var j = i; j > i-curr_type[1]; j--) {
+                if (avail[(j-1)%13+1] == -1) {
+                    match = false;
                     break;
                 }
             }
-        }
-        else if (curr_type[1] == 2) { // 2-chain
-            for (var i = 0; i < cpu.length-3; i++) {
-                if (valid_play(play_type([cpu[i],cpu[i+1],cpu[i+2],cpu[i+3]]))) { // aabb
-                    cpu[i].state = true;
-                    cpu[i+1].state = true;
-                    cpu[i+2].state = true;
-                    cpu[i+3].state = true;
-                    break;
+            if (match && trumps(i, curr_type[2])) { // only check if top card trumps current top card (not necessary?)
+                for (j = i; j > i-curr_type[1]; j--) {
+                    cpu[avail[(j-1)%13+1]].state = true;
+                    cpu[avail[(j-1)%13+1]+1].state = true;
                 }
-                else if (i < cpu.length-4 &&
-                         valid_play(play_type([cpu[i],cpu[i+1],cpu[i+3],cpu[i+4]]))) { // aa(a)bb
-                    cpu[i].state = true;
-                    cpu[i+1].state = true;
-                    cpu[i+3].state = true;
-                    cpu[i+4].state = true;
-                    break;
-                }
-                else if (i < cpu.length-5 &&
-                         valid_play(play_type([cpu[i],cpu[i+1],cpu[i+4],cpu[i+5]]))) { // aa(aa)bb
-                    cpu[i].state = true;
-                    cpu[i+1].state = true;
-                    cpu[i+4].state = true;
-                    cpu[i+5].state = true;
-                    break;
-                }
+                break;
             }
         }
     }
     else if (curr_type[0] == 3) { // triple
-        for (var i = 0; i < cpu.length-2; i++) {
-            if (valid_play(play_type([cpu[i],cpu[i+1],cpu[i+2]]))) {
-                cpu[i].state = true;
-                cpu[i+1].state = true;
-                cpu[i+2].state = true;
-                break;
+        var avail = find_chain(cpu, 3);
+        // curr_type[1] might be 1 (biggest), but no plays in this case anyway
+        for (var i = max(curr_type[1],curr_type[2]); i <= 14; i++) { // iterate by largest card in chain
+            var match = true;
+            for (var j = i; j > i-curr_type[1]; j--) {
+                if (avail[(j-1)%13+1] == -1) {
+                    match = false;
+                    break;
+                }
             }
-        } 
-    }
-    else if (curr_type[0] == 4) { // bomb
-        for (var i = 0; i < cpu.length-2; i++) {
-            if (i < cpu.length-3 &&
-                valid_play(play_type([cpu[i],cpu[i+1],cpu[i+2],cpu[i+3]]))) { // non-A bomb
-                cpu[i].state = true;
-                cpu[i+1].state = true;
-                cpu[i+2].state = true;
-                cpu[i+3].state = true;
-                break;
-            }
-            if (valid_play(play_type([cpu[i],cpu[i+1],cpu[i+2]]))) { // A-bomb
-                cpu[i].state = true;
-                cpu[i+1].state = true;
-                cpu[i+2].state = true;
+            if (match && trumps(i, curr_type[2])) { // only check if top card trumps current top card (not necessary?)
+                for (j = i; j > i-curr_type[1]; j--) {
+                    cpu[avail[(j-1)%13+1]].state = true;
+                    cpu[avail[(j-1)%13+1]+1].state = true;
+                    cpu[avail[(j-1)%13+1]+2].state = true;
+                }
                 break;
             }
         }
@@ -1025,6 +1048,36 @@ function cpu_choose() {
                 if (done) {
                     break;
                 }
+            }
+        }
+    }
+    else { // no plays or bomb: play bomb
+        for (var i = 0; i < cpu.length-2; i++) {
+            if (i < cpu.length-3 &&
+                valid_play(play_type([cpu[i],cpu[i+1],cpu[i+2],cpu[i+3]]))) { // non-A bomb
+                cpu[i].state = true;
+                cpu[i+1].state = true;
+                cpu[i+2].state = true;
+                cpu[i+3].state = true;
+                if (i != 0) { // add-on
+                    cpu[0].state = true;
+                }
+                else if (cpu.length > 4) {
+                    cpu[4].state = true;
+                }
+                break;
+            }
+            if (valid_play(play_type([cpu[i],cpu[i+1],cpu[i+2]]))) { // A-bomb
+                cpu[i].state = true;
+                cpu[i+1].state = true;
+                cpu[i+2].state = true;
+                if (i != 0) { // add-on
+                    cpu[0].state = true;
+                }
+                else if (cpu.length > 3) {
+                    cpu[4].state = true;
+                }
+                break;
             }
         }
     }
