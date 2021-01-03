@@ -1,6 +1,6 @@
 var count = 0;
-var screenX = 600, screenY = 520;
-var start_button = {x: screenX/2-100, y: 170, w: 200, h: 40, name: "Start Game"}, play_selected_button = {x: screenX/2-110, y: screenY-80, w: 220, h: 60, name: "Play selected"}, pass_button = {x: screenX-100, y: screenY-80, w: 85, h: 60, name: "Pass"}, clear_button = {x: 15, y: screenY-80, w: 85, h: 60, name: "Clear"};
+var screenX = 850, screenY = 600;
+var start_button = {x: screenX/2-100, y: 170, w: 200, h: 40, name: "Start Game"}, play_selected_button = {x: screenX/2-110, y: screenY-80, w: 220, h: 60, name: "Play selected"}, pass_button = {x: screenX-105, y: screenY-80, w: 90, h: 60, name: "Pass"}, clear_button = {x: 15, y: screenY-80, w: 90, h: 60, name: "Clear"}, rules_button = {x: screenX-105, y: 20, w: 90, h: 60, name: "Rules"}, back_button = {x: 15, y: 20, w: 90, h: 60, name: "Back"};
 
 function setup() {
     createCanvas(screenX, screenY);
@@ -20,7 +20,7 @@ function draw() {
     }
     else if (game_state == 2) {
         clear();
-        text("War", screenX/2, 100);
+        text("Card Game", screenX/2, 100);
         textSize(25);
         text("CPU's hand: "+cpu.length, screenX/2, 150);
         textSize(32);
@@ -29,6 +29,7 @@ function draw() {
         draw_button(play_selected_button);
         draw_button(pass_button);
         draw_button(clear_button);
+        draw_button(rules_button);
     }
     else if (game_state == 3) {
         clear();
@@ -47,7 +48,45 @@ function draw() {
             text("CPU had "+cpu.length+" cards left", screenX/2, 300);
         }
     }
-    
+    else if (game_state == 5) {
+        clear();
+        textSize(50);
+        textAlign(CENTER);
+        text("Rules", screenX/2, 100);
+        textSize(22);
+        textAlign(LEFT);
+        text("In this game, players take turns playing sets of cards. The goal of the game is to play all your cards before your opponent, in this case, the CPU player.\n\nA normal poker deck is used, except that the Jokers, 1 Ace, and 3 Twos are discarded, leaving a deck of 48 cards. These 48 cards are separated randomly into 3 equal piles of 16 cards, with each player taking one of the 3 piles. As you will have noticed, you and the CPU each start with 16 cards (the unused pile is there so that you cannot determine the opponent's cards from your own).\n\nThe first player is determined by the player who has the 3♠. In the case where neither player has the 3♠, the player with the 4♠ goes first, and in the case where neither player has a 4♠, 5♠, 6♠, 7♠,..., K♠, A♠, 2♠ are used until a first player is determined. Note that A♠ and 2♠ are always present in the deck. (For those curious: in the vanishingly improbable case that neither player has any ♠, ♡ is used, again starting from 3.)", 50, 150, screenX-100, screenY-50);
+        textSize(32);
+        textAlign(CENTER);
+        draw_button(rules_button);
+        draw_button(back_button);
+    }
+    else if (game_state == 6) {
+        clear();
+        textSize(50);
+        textAlign(CENTER);
+        text("Rules cont.", screenX/2, 100);
+        textSize(20);
+        textAlign(LEFT);
+        text("The first player is allowed to play any play. Following that, players must play plays of the same type that are of greater rank as the previous player. The only exception is that bombs trump any other play (except bombs of greater rank, of course). If they cannot do so or choose not to do so, they may pass. After a player passes, the other player can play like the first player, playing any play he wishes, and the game proceeds similarly. A player may not pass on the first turn or after a pass. The first player to play all his cards is the winner, and his score is equal to the number of cards his opponent has left.\n\nThe valid plays are the following:\n\nSingle cards. The greater the number, the greater the rank, with the exception that A is larger than K and 2 is greater than A.\n\nStraights. These must be at least 5 cards of consecutive numbers. Straights must be of the same length (number of cards) to be considered the same type. Note that A can come after K or before 2 in a straight, but 2 cannot come after A.\n\nDoubles. These are 2 cards of the same number. Again, double A trumps double K.", 50, 150, screenX-100, screenY-50);
+        textSize(32);
+        textAlign(CENTER);
+        draw_button(rules_button);
+        draw_button(back_button);
+    }
+    else if (game_state == 7) {
+        clear();
+        textSize(50);
+        textAlign(CENTER);
+        text("Rules cont.", screenX/2, 100);
+        textSize(17);
+        textAlign(LEFT);
+        text("Valid plays cont.\n\nDouble straight. Any number of doubles of consecutive numbers can be played together, ex. 3♡3♠4♡4♠. The number of cards must be the same for double straights to counts as the same type. Double A comes after double K.\n\nTriples. 3 cards of the same number. Note that there are only 3 A's so 3 A's counts as a bomb.\n\nTriple straights. Any number of triples of consecutive numbers can be played together. 3 A's can be used as part of a triple straight, after K (although it is hard to see when this would be advantageous).\n\nFull houses. These are a triple and a double, e.g. 3♡3♠4♣4♡4♠. Rank is determined by the triple (the double does not affect the play in any way, since only one player can have a triple of a given number). 3 A's can be used for the triple (although it is hard to see when this would be advantageous).\n\nBombs. These are all 4 of the same number, or all 3 A's. Players may optionally add an arbitrary single card \"add-on\" to the bomb (this does not affect the rank). Bombs can be played against plays of any other type, and bombs can trump bombs of smaller rank.", 50, 150, screenX-100, screenY-50);
+        textSize(32);
+        textAlign(CENTER);
+        draw_button(rules_button);
+        draw_button(back_button);
+    }
 }
 
 function mouseClicked() {
@@ -97,15 +136,21 @@ function mouseClicked() {
             }
         }
         if (turn && in_button(pass_button)) {
-            current = [];
-            curr_type = [0, 0, 0];
-            turn = false;
-            cpu_choose();
+            if (current.length > 0) { // cannot pass fresh
+                current = [];
+                curr_type = [0, 0, 0];
+                turn = false;
+                cpu_choose();
+            }
         }
         if (in_button(clear_button)) {
             for (var i = 0; i < player.length; i++) {
                 player[i].state = false;
             }
+        }
+        if (in_button(rules_button)) {
+            game_state = 5;
+            rules_button.name = "Next";
         }
     }
     else if (game_state == 3) {
@@ -119,6 +164,37 @@ function mouseClicked() {
         wins = 0;
         losses = 0;
         game_state = 1;
+    }
+    else if (game_state == 5) {
+        if (in_button(rules_button)) {           
+            game_state = 6;
+            rules_button.name = "Next";
+        }
+        if (in_button(back_button)) {           
+            game_state = 2;
+            rules_button.name = "Rules";
+        }
+        
+    }
+    else if (game_state == 6) {
+        if (in_button(rules_button)) {           
+            game_state = 7;
+            rules_button.name = "Done";
+        }
+        if (in_button(back_button)) {           
+            game_state = 5;
+            rules_button.name = "Next";
+        }
+    }
+    else if (game_state == 7) {
+        if (in_button(rules_button)) {           
+            game_state = 2;
+            rules_button.name = "Rules";
+        }
+        if (in_button(back_button)) {           
+            game_state = 6;
+            rules_button.name = "Next";
+        }
     }
 }
 
