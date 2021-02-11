@@ -1,5 +1,5 @@
 var count = 0;
-var screenX = 850, screenY = 600;
+var screenX = window.screen.width*0.8, screenY = window.screen.height*0.8;
 var start_button = {x: screenX/2-100, y: 170, w: 200, h: 40, name: "Start Game"}, play_selected_button = {x: screenX/2-110, y: screenY-80, w: 220, h: 60, name: "Play selected"}, pass_button = {x: screenX-105, y: screenY-80, w: 90, h: 60, name: "Pass"}, clear_button = {x: 15, y: screenY-80, w: 90, h: 60, name: "Clear"}, rules_button = {x: screenX-105, y: 20, w: 90, h: 60, name: "Rules"}, back_button = {x: 15, y: 20, w: 90, h: 60, name: "Back"};
 
 function setup() {
