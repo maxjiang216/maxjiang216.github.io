@@ -1,3 +1,0 @@
-Add games to 50
-Better interface (determining turn, explain what is happening, when CPU has played)
-Basic strategy (1 card left, fresh plays)
