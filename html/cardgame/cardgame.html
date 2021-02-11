@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Game</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    <script>
+        game_state = 0;
+        deck = []; // deck
+        player = []; // player's hand
+        current = []; // last play
+        curr_type = [];
+        cpu = []; // cpu's hand
+        turn = true; // true=player, false=cpu;
+    </script>
+</head>
+
+<body>
+    <main>
+        <script src=https://CDN.JSDelivr.net/p5.js/latest/mainfile></script>
+        <script src=cardgame.js></script>
+    </main>
+</body>
+
+</html>

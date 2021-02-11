@@ -1,0 +1,479 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <style>
+            .move2 {
+            }
+            .move3 {
+            }
+            rect.sticker {
+                stroke: black;
+                stroke-width: 2;
+            }
+            rect.sticker2 {
+                stroke: black;
+                stroke-width: 1;
+            }
+            rect.sticker3 {
+                stroke: black;
+                stroke-width: 1;
+            }
+            polygon.stickerpyra {
+                stroke: black;
+                stroke-width: 1;
+            }
+            polygon.stickerskewb {
+                stroke: black;
+                stroke-width: 1;
+            }
+        </style>
+        <script>
+        color = ['white','red','green','yellow','orange','blue'];
+        colorpyra = ['green','red','yellow','blue'];
+        hold = 0;
+        isHold = false;
+        sol = [];
+        solNum = 0;
+        solLen = 0;
+        </script>
+    </head>
+<body>
+
+    
+    <h1 style="text-align:center;">Rubik's Cube Solver</h1>
+
+    <hr>
+    
+    <script src="javascript.js"></script>
+    <script src="pocket.js"></script>
+    <script src="rubik.js"></script>
+    <script src="pyra.js"></script>
+    <script src="skewb.js"></script>
+    
+    <button onclick="cube2On()">2x2</button>
+    <button onclick="cube3On()">3x3</button>
+    <button onclick="cubepyraOn()">Pyraminx</button>
+    <button onclick="cubeskewbOn()">Skewb</button>
+
+    <hr>
+    
+    <svg id="cube3" width="600" height="450">
+        
+        <rect class="sticker3" x="151" y="1" width=48 height=48 style="fill:white;"
+        onclick="setColor3(0)"/>
+        <rect class="sticker3" x="201" y="1" width=48 height=48 style="fill:white;"
+        onclick="setColor3(1)"/>
+        <rect class="sticker3" x="251" y="1" width=48 height=48 style="fill:white;"
+        onclick="setColor3(2)"/>
+        <rect class="sticker3" x="151" y="51" width=48 height=48 style="fill:white;"
+        onclick="setColor3(3)"/>
+        <rect class="sticker3" x="201" y="51" width=48 height=48 style="fill:white;"
+        onclick="setColor3(4)"/>
+        <rect class="sticker3" x="251" y="51" width=48 height=48 style="fill:white;"
+        onclick="setColor3(5)"/>
+        <rect class="sticker3" x="151" y="101" width=48 height=48 style="fill:white;"
+        onclick="setColor3(6)"/>
+        <rect class="sticker3" x="201" y="101" width=48 height=48 style="fill:white;"
+        onclick="setColor3(7)"/>
+        <rect class="sticker3" x="251" y="101" width=48 height=48 style="fill:white;"
+        onclick="setColor3(8)"/>
+        
+        <rect class="sticker3" x="301" y="151" width=48 height=48 style="fill:red;"
+        onclick="setColor3(9)"/>
+        <rect class="sticker3" x="351" y="151" width=48 height=48 style="fill:red;"
+        onclick="setColor3(10)"/>
+        <rect class="sticker3" x="401" y="151" width=48 height=48 style="fill:red;"
+        onclick="setColor3(11)"/>
+        <rect class="sticker3" x="301" y="201" width=48 height=48 style="fill:red;"
+        onclick="setColor3(12)"/>
+        <rect class="sticker3" x="351" y="201" width=48 height=48 style="fill:red;"
+        onclick="setColor3(13)"/>
+        <rect class="sticker3" x="401" y="201" width=48 height=48 style="fill:red;"
+        onclick="setColor3(14)"/>
+        <rect class="sticker3" x="301" y="251" width=48 height=48 style="fill:red;"
+        onclick="setColor3(15)"/>
+        <rect class="sticker3" x="351" y="251" width=48 height=48 style="fill:red;"
+        onclick="setColor3(16)"/>
+        <rect class="sticker3" x="401" y="251" width=48 height=48 style="fill:red;"
+        onclick="setColor3(17)"/>
+        
+        <rect class="sticker3" x="151" y="151" width=48 height=48 style="fill:green;"
+        onclick="setColor3(18)"/>
+        <rect class="sticker3" x="201" y="151" width=48 height=48 style="fill:green;"
+        onclick="setColor3(19)"/>
+        <rect class="sticker3" x="251" y="151" width=48 height=48 style="fill:green;"
+        onclick="setColor3(20)"/>
+        <rect class="sticker3" x="151" y="201" width=48 height=48 style="fill:green;"
+        onclick="setColor3(21)"/>
+        <rect class="sticker3" x="201" y="201" width=48 height=48 style="fill:green;"
+        onclick="setColor3(22)"/>
+        <rect class="sticker3" x="251" y="201" width=48 height=48 style="fill:green;"
+        onclick="setColor3(23)"/>
+        <rect class="sticker3" x="151" y="251" width=48 height=48 style="fill:green;"
+        onclick="setColor3(24)"/>
+        <rect class="sticker3" x="201" y="251" width=48 height=48 style="fill:green;"
+        onclick="setColor3(25)"/>
+        <rect class="sticker3" x="251" y="251" width=48 height=48 style="fill:green;"
+        onclick="setColor3(26)"/>
+        
+        <rect class="sticker3" x="151" y="301" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(27)"/>
+        <rect class="sticker3" x="201" y="301" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(28)"/>
+        <rect class="sticker3" x="251" y="301" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(29)"/>
+        <rect class="sticker3" x="151" y="351" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(30)"/>
+        <rect class="sticker3" x="201" y="351" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(31)"/>
+        <rect class="sticker3" x="251" y="351" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(32)"/>
+        <rect class="sticker3" x="151" y="401" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(33)"/>
+        <rect class="sticker3" x="201" y="401" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(34)"/>
+        <rect class="sticker3" x="251" y="401" width=48 height=48 style="fill:yellow;"
+        onclick="setColor3(35)"/>
+        
+        <rect class="sticker3" x="1" y="151" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(36)"/>
+        <rect class="sticker3" x="51" y="151" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(37)"/>
+        <rect class="sticker3" x="101" y="151" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(38)"/>
+        <rect class="sticker3" x="1" y="201" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(39)"/>
+        <rect class="sticker3" x="51" y="201" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(40)"/>
+        <rect class="sticker3" x="101" y="201" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(41)"/>
+        <rect class="sticker3" x="1" y="251" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(42)"/>
+        <rect class="sticker3" x="51" y="251" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(43)"/>
+        <rect class="sticker3" x="101" y="251" width=48 height=48 style="fill:orange;"
+        onclick="setColor3(44)"/>
+        
+        <rect class="sticker3" x="451" y="151" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(45)"/>
+        <rect class="sticker3" x="501" y="151" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(46)"/>
+        <rect class="sticker3" x="551" y="151" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(47)"/>
+        <rect class="sticker3" x="451" y="201" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(48)"/>
+        <rect class="sticker3" x="501" y="201" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(49)"/>
+        <rect class="sticker3" x="551" y="201" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(50)"/>
+        <rect class="sticker3" x="451" y="251" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(51)"/>
+        <rect class="sticker3" x="501" y="251" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(52)"/>
+        <rect class="sticker3" x="551" y="251" width=48 height=48 style="fill:blue;"
+        onclick="setColor3(53)"/>
+        
+    Sorry, your browser does not support inline SVG.
+        
+    </svg>
+    
+    <svg id="cube2" width="400" height="300" style="display:none">
+        
+        <rect class="sticker2" x="101" y="1" width=48 height=48 style="fill:white;"
+        onclick="setColor2(0)"/>
+        <rect class="sticker2" x="151" y="1" width="48" height="48" style="fill:white;"
+        onclick="setColor2(1)"/>
+        <rect class="sticker2" x="151" y="51" width="48" height="48" style="fill:white;"
+        onclick="setColor2(2)"/>
+        <rect class="sticker2" x="101" y="51" width="48" height="48" style="fill:white;"
+        onclick="setColor2(3)"/>
+        
+        <rect class="sticker2" x="201" y="101" width="48" height="48" style="fill:red;"
+        onclick="setColor2(4)"/>
+        <rect class="sticker2" x="251" y="101" width="48" height="48" style="fill:red;"
+        onclick="setColor2(5)"/>
+        <rect class="sticker2" x="251" y="151" width="48" height="48" style="fill:red;"
+        onclick="setColor2(6)"/>
+        <rect class="sticker2" x="201" y="151" width="48" height="48" style="fill:red;"
+        onclick="setColor2(7)"/>
+        
+        <rect class="sticker2" x="101" y="101" width="48" height="48" style="fill:green;"
+        onclick="setColor2(8)"/>
+        <rect class="sticker2" x="151" y="101" width="48" height="48" style="fill:green;"
+        onclick="setColor2(9)"/>
+        <rect class="sticker2" x="151" y="151" width="48" height="48" style="fill:green;"
+        onclick="setColor2(10)"/>
+        <rect class="sticker2" x="101" y="151" width="48" height="48" style="fill:green;"
+        onclick="setColor2(11)"/>
+        
+        <rect class="sticker2" x="101" y="201" width="48" height="48" style="fill:yellow;"
+        onclick="setColor2(12)"/>
+        <rect class="sticker2" x="151" y="201" width="48" height="48" style="fill:yellow;"
+        onclick="setColor2(13)"/>
+        <rect class="sticker2" x="151" y="251" width="48" height="48" style="fill:yellow;"
+        onclick="setColor2(14)"/>
+        <rect class="sticker2" x="101" y="251" width="48" height="48" style="fill:yellow;"
+        onclick="setColor2(15)"/>
+        
+        <rect class="sticker2" x="1" y="101" width="48" height="48" style="fill:orange;"
+        onclick="setColor2(16)"/>
+        <rect class="sticker2" x="51" y="101" width="48" height="48" style="fill:orange;"
+        onclick="setColor2(17)"/>
+        <rect class="sticker2" x="51" y="151" width="48" height="48" style="fill:orange;"
+        onclick="setColor2(18)"/>
+        <rect class="sticker2" x="1" y="151" width="48" height="48" style="fill:orange;"
+        onclick="setColor2(19)"/>
+        
+        <rect class="sticker2" x="301" y="101" width="48" height="48" style="fill:blue;"
+        onclick="setColor2(20)"/>
+        <rect class="sticker2" x="351" y="101" width="48" height="48" style="fill:blue;"
+        onclick="setColor2(21)"/>
+        <rect class="sticker2" x="351" y="151" width="48" height="48" style="fill:blue;"
+        onclick="setColor2(22)"/>
+        <rect class="sticker2" x="301" y="151" width="48" height="48" style="fill:blue;"
+        onclick="setColor2(23)"/>
+    
+    Sorry, your browser does not support inline SVG.
+    </svg>
+    
+    <svg id="cubepyra" width="300" height="300" style="display:none">
+        
+        <polygon class="stickerpyra" points="150 1 126 42 174 42" style="fill:green" onclick="setColorPyra(0)"/>
+        <polygon class="stickerpyra" points="125 44 101 85 149 85" style="fill:green" onclick="setColorPyra(1)"/>
+        <polygon class="stickerpyra" points="126 44 174 44 150 85" style="fill:green" onclick="setColorPyra(2)"/>
+        <polygon class="stickerpyra" points="175 44 151 85 198 85" style="fill:green" onclick="setColorPyra(3)"/>
+        <polygon class="stickerpyra" points="100 87 76 128 124 128" style="fill:green" onclick="setColorPyra(4)"/>
+        <polygon class="stickerpyra" points="101 87 151 87 125 128" style="fill:green" onclick="setColorPyra(5)"/>
+        <polygon class="stickerpyra" points="150 87 126 128 174 128" style="fill:green" onclick="setColorPyra(6)"/>
+        <polygon class="stickerpyra" points="151 87 199 87 175 128" style="fill:green" onclick="setColorPyra(7)"/>
+        <polygon class="stickerpyra" points="200 87 176 128 224 128" style="fill:green" onclick="setColorPyra(8)"/>
+        
+        <polygon class="stickerpyra" points="75 130 51 171 99 171" style="fill:red" onclick="setColorPyra(9)"/>
+        <polygon class="stickerpyra" points="50 173 26 214 74 214" style="fill:red" onclick="setColorPyra(10)"/>
+        <polygon class="stickerpyra" points="51 173 99 173 75 214" style="fill:red" onclick="setColorPyra(11)"/>
+        <polygon class="stickerpyra" points="100 173 76 214 123 214" style="fill:red" onclick="setColorPyra(12)"/>
+        <polygon class="stickerpyra" points="25 216 1 257 49 257" style="fill:red" onclick="setColorPyra(13)"/>
+        <polygon class="stickerpyra" points="26 216 76 216 50 257" style="fill:red" onclick="setColorPyra(14)"/>
+        <polygon class="stickerpyra" points="75 216 51 257 99 257" style="fill:red" onclick="setColorPyra(15)"/>
+        <polygon class="stickerpyra" points="76 216 124 216 100 257" style="fill:red" onclick="setColorPyra(16)"/>
+        <polygon class="stickerpyra" points="125 216 101 257 149 257" style="fill:red" onclick="setColorPyra(17)"/>
+        
+        <polygon class="stickerpyra" points="150 257 126 216 174 216" style="fill:yellow" onclick="setColorPyra(18)"/>
+        <polygon class="stickerpyra" points="125 214 101 173 149 173" style="fill:yellow" onclick="setColorPyra(19)"/>
+        <polygon class="stickerpyra" points="126 214 174 214 150 173" style="fill:yellow" onclick="setColorPyra(20)"/>
+        <polygon class="stickerpyra" points="175 214 151 173 198 173" style="fill:yellow" onclick="setColorPyra(21)"/>
+        <polygon class="stickerpyra" points="100 171 76 130 124 130" style="fill:yellow" onclick="setColorPyra(22)"/>
+        <polygon class="stickerpyra" points="101 171 151 171 125 130" style="fill:yellow" onclick="setColorPyra(23)"/>
+        <polygon class="stickerpyra" points="150 171 126 130 174 130" style="fill:yellow" onclick="setColorPyra(24)"/>
+        <polygon class="stickerpyra" points="151 171 199 171 175 130" style="fill:yellow" onclick="setColorPyra(25)"/>
+        <polygon class="stickerpyra" points="200 171 176 130 224 130" style="fill:yellow" onclick="setColorPyra(26)"/>
+        
+        <polygon class="stickerpyra" points="225 130 201 171 249 171" style="fill:blue" onclick="setColorPyra(27)"/>
+        <polygon class="stickerpyra" points="200 173 176 214 224 214" style="fill:blue" onclick="setColorPyra(28)"/>
+        <polygon class="stickerpyra" points="201 173 249 173 225 214" style="fill:blue" onclick="setColorPyra(29)"/>
+        <polygon class="stickerpyra" points="250 173 226 214 273 214" style="fill:blue" onclick="setColorPyra(30)"/>
+        <polygon class="stickerpyra" points="175 216 151 257 199 257" style="fill:blue" onclick="setColorPyra(31)"/>
+        <polygon class="stickerpyra" points="176 216 226 216 200 257" style="fill:blue" onclick="setColorPyra(32)"/>
+        <polygon class="stickerpyra" points="225 216 201 257 249 257" style="fill:blue" onclick="setColorPyra(33)"/>
+        <polygon class="stickerpyra" points="226 216 274 216 250 257" style="fill:blue" onclick="setColorPyra(34)"/>
+        <polygon class="stickerpyra" points="275 216 251 257 299 257" style="fill:blue" onclick="setColorPyra(35)"/>
+        
+        Sorry, your browser does not support inline SVG.
+    
+    </svg>
+    
+    <svg id="cubeskewb" width="600" height="450" style="display:none">
+        
+        <polygon class="stickerskewb" points="225 1 299 75 225 149 151 75" onclick="setColorSkewb(0)"/>
+        <polygon class="stickerskewb" points="151 1 224 1 151 74" onclick="setColorSkewb(1)"/>
+        <polygon class="stickerskewb" points="226 1 299 1 299 74" onclick="setColorSkewb(2)"/>
+        <polygon class="stickerskewb" points="299 76 299 149 226 149" onclick="setColorSkewb(3)"/>
+        <polygon class="stickerskewb" points="151 76 151 149 224 149" onclick="setColorSkewb(4)"/>
+        
+        <polygon class="stickerskewb" points="375 151 449 225 375 299 301 225" onclick="setColorSkewb(5)"/>
+        <polygon class="stickerskewb" points="301 151 374 151 301 224" onclick="setColorSkewb(6)"/>
+        <polygon class="stickerskewb" points="376 151 449 151 449 224" onclick="setColorSkewb(7)"/>
+        <polygon class="stickerskewb" points="449 226 449 299 376 299" onclick="setColorSkewb(8)"/>
+        <polygon class="stickerskewb" points="301 226 301 299 374 299" onclick="setColorSkewb(9)"/>
+        
+        <polygon class="stickerskewb" points="225 151 299 225 225 299 151 225" onclick="setColorSkewb(10)"/>
+        <polygon class="stickerskewb" points="151 151 224 151 151 224" onclick="setColorSkewb(11)"/>
+        <polygon class="stickerskewb" points="226 151 299 151 299 224" onclick="setColorSkewb(12)"/>
+        <polygon class="stickerskewb" points="299 226 299 299 226 299" onclick="setColorSkewb(13)"/>
+        <polygon class="stickerskewb" points="151 226 151 299 224 299" onclick="setColorSkewb(14)"/>
+        
+        <polygon class="stickerskewb" points="225 301 299 375 225 449 151 375" onclick="setColorSkewb(15)"/>
+        <polygon class="stickerskewb" points="151 301 224 301 151 374" onclick="setColorSkewb(16)"/>
+        <polygon class="stickerskewb" points="226 301 299 301 299 374" onclick="setColorSkewb(17)"/>
+        <polygon class="stickerskewb" points="299 376 299 449 226 449" onclick="setColorSkewb(18)"/>
+        <polygon class="stickerskewb" points="151 376 151 449 224 449" onclick="setColorSkewb(19)"/>
+        
+        <polygon class="stickerskewb" points="75 151 149 225 75 299 1 225" onclick="setColorSkewb(20)"/>
+        <polygon class="stickerskewb" points="1 151 74 151 1 224" onclick="setColorSkewb(21)"/>
+        <polygon class="stickerskewb" points="76 151 149 151 149 224" onclick="setColorSkewb(22)"/>
+        <polygon class="stickerskewb" points="149 226 149 299 76 299" onclick="setColorSkewb(23)"/>
+        <polygon class="stickerskewb" points="1 226 1 299 74 299" onclick="setColorSkewb(24)"/>
+        
+        <polygon class="stickerskewb" points="525 151 599 225 525 299 451 225" onclick="setColorSkewb(25)"/>
+        <polygon class="stickerskewb" points="451 151 524 151 451 224" onclick="setColorSkewb(26)"/>
+        <polygon class="stickerskewb" points="526 151 599 151 599 224" onclick="setColorSkewb(27)"/>
+        <polygon class="stickerskewb" points="599 226 599 299 526 299" onclick="setColorSkewb(28)"/>
+        <polygon class="stickerskewb" points="451 226 451 299 524 299" onclick="setColorSkewb(29)"/>
+        
+        Sorry, your browser does not support inline SVG.
+    
+    </svg>
+    
+    <hr>
+    
+    <svg id="colorpicker" width="300" height="50">
+        <rect class="sticker" x="1" y="1" width="48" height="48"
+        style="fill:white"
+        onclick = "holder(0)"/>
+        <rect class="sticker" x="51" y="1" width="48" height="48"
+        style="fill:red"
+        onclick = "holder(1)"/>
+        <rect class="sticker" x="101" y="1" width="48" height="48"
+        style="fill:green"
+        onclick = "holder(2)"/>
+        <rect class="sticker" x="151" y="1" width="48" height="48"
+        style="fill:yellow"
+        onclick = "holder(3)"/>
+        <rect class="sticker" x="201" y="1" width="48" height="48"
+        style="fill:orange"
+        onclick = "holder(4)"/>
+        <rect class="sticker" x="251" y="1" width="48" height="48"
+        style="fill:blue"
+        onclick = "holder(5)"/>
+        
+    Sorry, your browser does not support inline SVG.
+    </svg>
+    <svg id="colorpickerpyra" width="300" height="50" style="display:none">
+        <rect class="sticker" x="1" y="1" width="48" height="48"
+        style="fill:green"
+        onclick = "holder(0)"/>
+        <rect class="sticker" x="51" y="1" width="48" height="48"
+        style="fill:red"
+        onclick = "holder(1)"/>
+        <rect class="sticker" x="101" y="1" width="48" height="48"
+        style="fill:yellow"
+        onclick = "holder(2)"/>
+        <rect class="sticker" x="151" y="1" width="48" height="48"
+        style="fill:blue"
+        onclick = "holder(3)"/>
+        
+    Sorry, your browser does not support inline SVG.
+    </svg>
+    
+    <hr>
+    
+    <button class="move2" onclick="doMove2(0);solNum = solLen" style="display:none">U</button>
+    <button class="move2" onclick="doMove2(1);solNum = solLen" style="display:none">R</button>
+    <button class="move2" onclick="doMove2(2);solNum = solLen" style="display:none">F</button>
+    <button class="move2" onclick="doMove2(3);solNum = solLen" style="display:none">D</button>
+    <button class="move2" onclick="doMove2(4);solNum = solLen" style="display:none">L</button>
+    <button class="move2" onclick="doMove2(5);solNum = solLen" style="display:none">B</button>
+    <div></div>
+    <button class="move2" onclick="doMove2(6);solNum = solLen" style="display:none">U'</button>
+    <button class="move2" onclick="doMove2(7);solNum = solLen" style="display:none">R'</button>
+    <button class="move2" onclick="doMove2(8);solNum = solLen" style="display:none">F'</button>
+    <button class="move2" onclick="doMove2(9);solNum = solLen" style="display:none">D'</button>
+    <button class="move2" onclick="doMove2(10);solNum = solLen" style="display:none">L'</button>
+    <button class="move2" onclick="doMove2(11);solNum = solLen" style="display:none">B'</button>
+    <div></div>
+    <button class="move2" onclick="doMove2(12);solNum = solLen" style="display:none">U2</button>
+    <button class="move2" onclick="doMove2(13);solNum = solLen" style="display:none">R2</button>
+    <button class="move2" onclick="doMove2(14);solNum = solLen" style="display:none">F2</button>
+    <button class="move2" onclick="doMove2(15);solNum = solLen" style="display:none">D2</button>
+    <button class="move2" onclick="doMove2(16);solNum = solLen" style="display:none">L2</button>
+    <button class="move2" onclick="doMove2(17);solNum = solLen" style="display:none">B2</button>
+    <div></div>
+    <button class="move2" onclick="scramble2()" style="display:none">Scramble</button>
+    <button class="move2" onclick="completeSolve2()" style="display:none">Solve</button>
+    <button class="move2" onclick="doSolution2()" style="display:none">Execute Solution</button>
+    <button class="move2" onclick="reset2()" style="display:none">Reset</button>
+    <p id="solution2" class="move2"></p>
+    
+    <button class="move3" onclick="doMove3(0);solNum = solLen">U</button>
+    <button class="move3" onclick="doMove3(1);solNum = solLen">R</button>
+    <button class="move3" onclick="doMove3(2);solNum = solLen">F</button>
+    <button class="move3" onclick="doMove3(3);solNum = solLen">D</button>
+    <button class="move3" onclick="doMove3(4);solNum = solLen">L</button>
+    <button class="move3" onclick="doMove3(5);solNum = solLen">B</button>
+    <div></div>
+    <button class="move3" onclick="doMove3(6);solNum = solLen">U'</button>
+    <button class="move3" onclick="doMove3(7);solNum = solLen">R'</button>
+    <button class="move3" onclick="doMove3(8);solNum = solLen">F'</button>
+    <button class="move3" onclick="doMove3(9);solNum = solLen">D'</button>
+    <button class="move3" onclick="doMove3(10);solNum = solLen">L'</button>
+    <button class="move3" onclick="doMove3(11);solNum = solLen">B'</button>
+    <div></div>
+    <button class="move3" onclick="doMove3(12);solNum = solLen">U2</button>
+    <button class="move3" onclick="doMove3(13);solNum = solLen">R2</button>
+    <button class="move3" onclick="doMove3(14);solNum = solLen">F2</button>
+    <button class="move3" onclick="doMove3(15);solNum = solLen">D2</button>
+    <button class="move3" onclick="doMove3(16);solNum = solLen">L2</button>
+    <button class="move3" onclick="doMove3(17);solNum = solLen">B2</button>
+    <div></div>
+    <button class="move3" onclick="scramble3()">Scramble</button>
+    <button class="move3" onclick="completeSolve3()">Solve</button>
+    <button class="move3" onclick="doSolution3()">Execute Solution</button>
+    <button class="move3" onclick="reset3()">Reset</button>
+    <p id="solution3" class="move3"></p>
+    <script>
+    function RubikSolve() {
+        sol = completeSolve3();
+        var out = "", str = translate3(sol);
+        for (var i = 0; i < str.length; i++) {
+            out = out + str[i] + ' ';
+        }
+        document.getElementById('solution3').innerHTML = out;
+        solLen = sol.length;
+        solNum = 0;
+    }
+    </script>
+    
+    <button class="movepyra" onclick="doMovePyra(0);solNum = solLen" style="display:none">U</button>
+    <button class="movepyra" onclick="doMovePyra(1);solNum = solLen" style="display:none">R</button>
+    <button class="movepyra" onclick="doMovePyra(2);solNum = solLen" style="display:none">L</button>
+    <button class="movepyra" onclick="doMovePyra(3);solNum = solLen" style="display:none">B</button>
+    <div></div>
+    <button class="movepyra" onclick="doMovePyra(4);solNum = solLen" style="display:none">U'</button>
+    <button class="movepyra" onclick="doMovePyra(5);solNum = solLen" style="display:none">R'</button>
+    <button class="movepyra" onclick="doMovePyra(6);solNum = solLen" style="display:none">L'</button>
+    <button class="movepyra" onclick="doMovePyra(7);solNum = solLen" style="display:none">B'</button>
+    <div></div>
+    <button class="movepyra" onclick="doMovePyra(8);solNum = solLen" style="display:none">u</button>
+    <button class="movepyra" onclick="doMovePyra(9);solNum = solLen" style="display:none">r</button>
+    <button class="movepyra" onclick="doMovePyra(10);solNum = solLen" style="display:none">l</button>
+    <button class="movepyra" onclick="doMovePyra(11);solNum = solLen" style="display:none">b</button>
+    <div></div>
+    <button class="movepyra" onclick="doMovePyra(12);solNum = solLen" style="display:none">u'</button>
+    <button class="movepyra" onclick="doMovePyra(13);solNum = solLen" style="display:none">r'</button>
+    <button class="movepyra" onclick="doMovePyra(14);solNum = solLen" style="display:none">l'</button>
+    <button class="movepyra" onclick="doMovePyra(15);solNum = solLen" style="display:none">b'</button>
+    <div></div>
+    <button class="movepyra" onclick="scramblePyra()" style="display:none">Scramble</button>
+    <button class="movepyra" onclick="completeSolvePyra()" style="display:none">Solve</button>
+    <button class="movepyra" onclick="doSolutionPyra()" style="display:none">Execute Solution</button>
+    <button class="movepyra" onclick="resetPyra()" style="display:none">Reset</button>
+    <p id="solutionpyra" class="movepyra"></p>
+    
+    <button class="moveskewb" onclick="doMoveSkewb(0);solNum = solLen" style="display:none">U</button>
+    <button class="moveskewb" onclick="doMoveSkewb(1);solNum = solLen" style="display:none">R</button>
+    <button class="moveskewb" onclick="doMoveSkewb(2);solNum = solLen" style="display:none">L</button>
+    <button class="moveskewb" onclick="doMoveSkewb(3);solNum = solLen" style="display:none">B</button>
+    <div></div>
+    <button class="moveskewb" onclick="doMoveSkewb(4);solNum = solLen" style="display:none">U'</button>
+    <button class="moveskewb" onclick="doMoveSkewb(5);solNum = solLen" style="display:none">R'</button>
+    <button class="moveskewb" onclick="doMoveSkewb(6);solNum = solLen" style="display:none">L'</button>
+    <button class="moveskewb" onclick="doMoveSkewb(7);solNum = solLen" style="display:none">B'</button>
+    <div></div>
+    <button class="moveskewb" onclick="scrambleSkewb()" style="display:none">Scramble</button>
+    <button class="moveskewb" onclick="completeSolveSkewb()" style="display:none">Solve</button>
+    <button class="moveskewb" onclick="doSolutionSkewb()" style="display:none">Execute Solution</button>
+    <button class="moveskewb" onclick="resetSkewb()" style="display:none">Reset</button>
+    <p id="solutionskewb" class="moveskewb"></p>
+    
+</body>
+</html>
