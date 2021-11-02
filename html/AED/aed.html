@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AED</title>
+    <style>
+        body {
+            padding: 1;
+            margin: 1;
+        }
+        table {
+          border-spacing: 0;
+          width: 100%;
+          border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>American Elections Database</h1>
+        <script src="aeddata.js"></script>
+        <script>
+            var data = elections[0]["Results"];
+            generateTable(data);
+        </script>
+        
+    </main>
+</body>
+
+</html>
