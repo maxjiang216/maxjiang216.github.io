@@ -1,22 +1,47 @@
-def compile_president(path, filename="president"):
-    '''Reads in presidentxxxx.txt file containing results of presidential elections
-    From 1972 to 2020
-    We wish to avoid elections before 1972 so have only Democrats and Republicans win states
-    In future we may add previous elections for completeness
-    but shift, trend, and bias data is not guaranteed to be meaningful and will focus on Democratic and
-    Republican performance
-    Before the establishment of the Republican party, we will represent the main opposition to the
-    Democratic party as the Republican party in cases of trend, etc., for the primary reason that
-    the Democratic party is older
-    We may also choose to represent other parties as Independents where we feel it is appropriate'''
+import os
 
-    for i in range(1972, 2024, 4):
-        f = open("{0}{1}.txt".format(filename, i), 'r')
-        colors = "" # mapping parties to colors
-        results = "" # mapping states to results
-        parties = []
-        first = True
-        for line in f:
-            if first:
-                for party in line.split('\t')[1:-1]:
-                    parties.append(party.split['/'][0])
+def compile_all(path="elections"):
+    '''Compiles a folder of folders
+    folder elections should be a folder of folders (US_president, etc.)'''
+
+    out = {}
+    for folder in os.listdir(path):
+        out[folder] = compile_folder(path + '/' + folder)
+    return out
+
+def compile_folder(path):
+    '''Compiles all files in folder path'''
+
+    out = {}
+    for filename in os.listdir(path):
+        if filename.endswith(".txt"): # only consider .txt files (for safety)
+            out[filename.split('.')[0]] = parse(path+'/'+filename)
+    return out
+
+def parse(filename):
+    '''Given a file, parses to return dictionary that can be used by JS to describe a map'''
+
+    results = {} # dictionary mapping subdivision to results (by party)
+    parties = [] # ordered list of parties (incl. total)
+    colors = [] # ordered list of colors (corresponding to parties, total should be last and not colored)
+    for line in open(filename,'r'):
+        lst = line.strip().split('\t')
+        if lst[0] == "_PARTIES":
+            parties = lst[1:]
+        elif lst[0] == "_COLORS":
+            colors = lst[1:]
+        else:
+            results[lst[0]] = lst[1:]
+    out = {}
+    color_dict = {}
+    for i in range(len(colors)):
+        color_dict[parties[i]] = colors[i]
+    for div in results:
+        temp = {}
+        for i in range(len(results[div])):
+            temp[parties[i]] = int(results[div][i])
+        out[div] = temp
+    out["_COLORS"] = color_dict
+    return out
+
+print(compile_all())

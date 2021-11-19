@@ -1,4 +1,5 @@
-State	Democratic/Blue	Republican/Red	Total
+_PARTIES	Democratic	Republican	Total
+_COLORS	Blue	Red
 Alabama	659170	504070	1182850
 Alaska	44058	71555	123574
 Arizona	295602	418642	742719

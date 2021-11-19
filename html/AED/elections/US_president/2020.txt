@@ -1,4 +1,5 @@
-State	Joe Biden (D)	Donald Trump (R)	Total
+_PARTIES	Democratic	Republican	Total
+_COLORS	Blue	Red
 Alabama	849624	1441170	2323282
 Alaska	153778	189951	359530
 Arizona	1672143	1661686	3387326

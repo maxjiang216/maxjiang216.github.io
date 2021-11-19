@@ -1,4 +1,5 @@
-State	Hillary Clinton (D)	Donald Trump (R)	Total
+_PARTIES	Democratic	Republican	Total
+_COLORS	Blue	Red
 Alabama	729547	1318255	2123372
 Alaska	116454	163387	318608
 Arizona	1161167	1252401	2573165

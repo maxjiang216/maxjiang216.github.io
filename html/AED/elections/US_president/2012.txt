@@ -1,4 +1,5 @@
-State	Barack Obama (D)	Mitt Romney (R)	Total
+_PARTIES	Democratic	Republican	Total
+_COLORS	Blue	Red
 Alabama	795696	1255925	2074338
 Alaska	122640	164676	300495
 Arizona	1025232	1233654	2299254

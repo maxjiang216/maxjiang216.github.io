@@ -1,4 +1,5 @@
-State	Bill Clinton (D)	George Bush (R)	Total
+_PARTIES	Democratic	Republican	Total
+_COLORS	Blue	Red
 Alabama	690080	804283	1688060
 Alaska	78294	102000	258506
 Arizona	543050	572086	1487006
