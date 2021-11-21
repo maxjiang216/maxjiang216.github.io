@@ -12,6 +12,7 @@ top 2 third party
    - mississippi 1971 no republican primary, ind unknown person
    - alabama 1970 second place is clearly affiliated with democratic party, would "caucus" in a win situation. no republican candidate
    - 1966 tennessee governor, no republican
+   - 2018 california senate, no republican made runoff so take jungle primary totals
  - 1966 george governor, dem second place won from contingent election, for now let map show popular vote result (more relevant to electoral analysis)
  - senate, etc., party is who they would caucus with
 blank votes, overvotes, undervotes, invalid ballots
