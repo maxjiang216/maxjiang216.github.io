@@ -1,4 +1,4 @@
-_PARTIES	Democrat	Republican	Total
+_PARTIES	Democratic	Republican	Total
 _COLORS	Blue	Red
 Kentucky	709890	704754	1443123
 Louisiana	774498	734268	1508784

@@ -1,0 +1,16 @@
+runoff
+ - add all candidate of each party
+multiple candidates from a party otherwise
+ - choose the best performer in each category
+top 2 third party
+ - take best third party as independent
+ - in cases where one party does not run, take the main opposite as that party's candidate when appropriate
+blank votes, overvotes, undervotes, invalid ballots
+ - do not include
+recall
+ - yes/no according to party
+
+add flip/hold, shift, trend
+ - add "last election" for each election
+ - auto generate "winner" for each election
+ - auto generate "flip/hold" for each election?

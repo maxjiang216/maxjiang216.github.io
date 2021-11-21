@@ -1,4 +1,4 @@
-_PARTIES	Democrat	Republican	Total
+_PARTIES	Democratic	Republican	Total
 _COLORS	Blue	Red
 Delaware	248404	166852	425784
 Indiana	1235503	1397396	2719968
