@@ -1,5 +1,5 @@
 import os
-from utility import get_state_abbr
+from utility import get_state_abbr, get_party_lst
 
 def update_all(path="elections"):
     '''Compiles a folder of folders
@@ -38,7 +38,7 @@ def parse(filename, state=False):
     for line in open(filename,'r'):
         lst = line.strip().split('\t')
         if lst[0] == "_PARTIES":
-            parties = lst[1:]
+            parties = get_party_lst(lst[1:])
         elif lst[0] == "_COLORS":
             colors = lst[1:]
         else:
@@ -49,8 +49,19 @@ def parse(filename, state=False):
         color_dict[parties[i]] = colors[i]
     for div in results:
         temp = {}
-        for i in range(len(results[div])):
-            temp[parties[i]] = int(results[div][i])
+        sum = 0
+        for i in range(len(parties)):
+            if i >= len(results[div]):
+                if i == len(parties)-1: # total
+                    temp[parties[i]] = sum
+                else: # third party
+                    temp[parties[i]] = 0
+            else:
+                if results[div][i] == '': # default is 0
+                    temp[parties[i]] = 0
+                else:
+                    temp[parties[i]] = int(results[div][i])
+                    sum += int(results[div][i])
         out[get_state_abbr(div, state)] = temp
     out["_COLORS"] = color_dict
     return out
@@ -69,7 +80,7 @@ def update_html(path, years):
     flag = False
     s = ""
     for line in open(path,'r'):
-        if "<select name=\"election-year\" id=\"election-year\">" in line:
+        if "<div class=\"wrapper\"><select name=\"election-year\" id=\"election-year\"" in line:
             flag = True
             s += line
             for year in years:

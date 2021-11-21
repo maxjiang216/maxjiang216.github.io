@@ -8,3 +8,21 @@ def get_state_abbr(string, state=False):
     if out == None:
         return string
     return out
+
+def get_party_lst(lst):
+    out = []
+    for i in lst:
+        out.append(get_party_abbr(i))
+    return out
+
+def get_party_abbr(string):
+    '''Returns proper name of party given abbreviation/variation'''
+
+    abbrs = {
+        "Democratic":{"dem","democrat","democratic","democraticparty"}
+    }
+
+    for abbr in abbrs:
+        if ''.join(string.split()).lower() in abbrs[abbr]:
+            return abbr
+    return string # if not found
