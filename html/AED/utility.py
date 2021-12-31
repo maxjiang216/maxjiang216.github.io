@@ -26,3 +26,44 @@ def get_party_abbr(string):
         if ''.join(string.split()).lower() in abbrs[abbr]:
             return abbr
     return string # if not found
+
+def recolor_svg_hex(file_name, color, recolor):
+    '''Scales coordinates in SVG path object'''
+    outfile = open(file_name+'_recolor.txt','w')
+    for line in open(file_name+'.txt','r'):
+        if "<path " not in line or " fill=\"#"+color+"\"" not in line:
+            outfile.write(line)
+            continue
+        prefix = line[:line.find(" fill=\"#")+8]
+        coord = line[line.find(" fill=\"#")+8:]
+        suffix = coord[coord.find('"'):]
+        coord = coord[:coord.find('"')]
+        outfile.write(prefix+recolor+suffix)
+    outfile.close()
+
+def replace_map(html, map, n = 4):
+    '''replace map in html with contents in map (svg)'''
+    out = ""
+    flag = False
+    done = False
+    for line in open(html+'.html','r'):
+        if flag:
+            if "</svg>" in line:
+                flag = False
+            if "<path " not in line:
+                out += line
+            elif not done:
+                for part in open(map + ".txt", 'r'):
+                    out += ' ' * n + part.strip() + '\n'
+                done = True
+        elif not flag:
+            out += line
+            if "<svg " in line:
+                flag = True
+
+    open(html+".html",'w').write(out)
+
+
+recolor_svg_hex("mapchart",'d1dbdd','6b6e73')
+replace_map("US_president_county","mapchart_recolor",8)
+
