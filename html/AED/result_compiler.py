@@ -9,7 +9,7 @@ def update_all(path="elections"):
 
 def compile_all(path="elections"):
     '''Compiles a folder of folders
-    folder elections should be a folder of folders (US_president, etc.)'''
+    folder elections should be a folder of folders (US_president_state, etc.)'''
 
     out = {}
     for folder in os.listdir(path):
