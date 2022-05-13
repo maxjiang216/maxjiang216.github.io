@@ -867,6 +867,7 @@ function orientCube(cube) {
 
 function orientCubeByMove(cube, maxlen, lastmove = 0, currlen = 1) {
     var solution, partial = [], temp, done = false;
+    console.log(maxlen);
     for (var i = 0; i < 18; i++) {
         if (currlen == 1 || lastmove % 6 != i % 6) {
             solution = [];
