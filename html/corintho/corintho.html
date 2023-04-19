@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corintho</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <main>
+        <h1>Corintho</h1>
+    </main>
+    <div id="game">
+        <div id="board"></div>
+        <div id="piece-banks">
+            <div id="piece-bank-cpu">
+                <img src="./capital.png" draggable="true" class="piece" id="capital1" alt="capital"/>
+                <img src="./column.png" draggable="true" class="piece" id="column1" alt="column"/>
+                <img src="./base.png" draggable="true" class="piece" id="base1" alt="base"/>
+            </div>
+            <div></div>
+            <div id="piece-bank-player">
+                <img src="./capital.png" draggable="true" class="piece" id="capital2" alt="capital"/>
+                <img src="./column.png" draggable="true" class="piece" id="column2" alt="column"/>
+                <img src="./base.png" draggable="true" class="piece" id="base2" alt="base"/>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./corintho.jsx"></script>
+</body>
+</html>
