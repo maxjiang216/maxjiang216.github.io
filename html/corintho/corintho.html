@@ -16,15 +16,24 @@
         <div id="board"></div>
         <div id="piece-banks">
             <div id="piece-bank-cpu">
-                <img src="./capital.png" draggable="true" class="piece" id="capital1" alt="capital"/>
-                <img src="./column.png" draggable="true" class="piece" id="column1" alt="column"/>
-                <img src="./base.png" draggable="true" class="piece" id="base1" alt="base"/>
+                <img src="./capital.png" class="piece-cpu" id="capital-cpu" alt="capital"/>
+                <img src="./column.png" class="piece-cpu" id="column-cpu" alt="column"/>
+                <img src="./base.png" class="piece-cpu" id="base-cpu" alt="base"/>
             </div>
             <div></div>
             <div id="piece-bank-player">
-                <img src="./capital.png" draggable="true" class="piece" id="capital2" alt="capital"/>
-                <img src="./column.png" draggable="true" class="piece" id="column2" alt="column"/>
-                <img src="./base.png" draggable="true" class="piece" id="base2" alt="base"/>
+                <div class="piece-container">
+                <img src="./capital.png" draggable="true" class="piece" id="capital" alt="capital"/>
+                <div class="counter" id="counter-capital">4</div>
+            </div>
+            <div class="piece-container">
+                <img src="./column.png" draggable="true" class="piece" id="column" alt="column"/>
+                <div class="counter" id="counter-column">4</div>
+            </div>
+            <div class="piece-container">
+                <img src="./base.png" draggable="true" class="piece" id="base" alt="base"/>
+                <div class="counter" id="counter-counter">4</div>
+            </div>
             </div>
         </div>
     </div>
