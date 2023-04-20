@@ -106,6 +106,7 @@
   }
 
   .tile {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -163,7 +164,7 @@
   .piece {
     cursor: grab;
     width: 90px;
-    height: 27px;
+    height: 30px;
     object-fit: contain;
   }
 
@@ -181,4 +182,33 @@
     justify-content: center;
     font-size: 14px;
     font-weight: bold;
+  }
+
+  .label {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .label.column {
+    bottom: 0px;
+    right: 80px;
+  }
+
+  .label.row {
+    bottom: 80px;
+    right: 0px;
+  }
+
+  .label.light {
+    color: #f0d9b5;
+  }
+
+  .label.dark {
+    color: #b58863;
   }
