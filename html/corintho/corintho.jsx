@@ -26,10 +26,10 @@ function addDragEventsToPieces() {
 function drawGame(gameState) {
   drawBoard(gameState);
   drawPieceBank(gameState);
+  drawTurn(gameState);
 }
 
 function drawBoard(gameState) {
-  console.log(gameState);
   const boardElement = document.getElementById("board");
   boardElement.innerHTML = "";
 
@@ -52,14 +52,11 @@ function createTile(row, col, cell) {
   tile.dataset.col = col;
 
   // Add pieces to the tile based on the cell.pieces list
-  for (const pieceType of cell.pieces) {
-    // Get the piece element from the pieceElements object
-    const pieceElement = pieceElements[pieceType];
-
-    if (pieceElement) {
+  for (let pieceType in cell.pieces) {
+    if (cell.pieces[pieceType]) {
       // Add the piece element to the tile using innerHTML
       const pieceWrapper = document.createElement("div");
-      pieceWrapper.innerHTML = pieceElement;
+      pieceWrapper.innerHTML = pieceElements[pieceType];
       const clonedPiece = pieceWrapper.firstChild;
       clonedPiece.removeAttribute("id");
       clonedPiece.id = `${pieceType}-${row}-${col}`;
@@ -75,8 +72,14 @@ function createTile(row, col, cell) {
   tile.ondragover = (event) => {
     event.preventDefault();
   };
-  tile.ondrop = (event) => {
+  tile.ondrop = async (event) => {
     event.preventDefault();
+
+    // Do nothing if it's the CPU's turn
+    if (gameState.turn === 1) {
+      return;
+    }
+
     const pieceId = event.dataTransfer.getData("text");
     const piece = document.getElementById(pieceId);
 
@@ -90,7 +93,7 @@ function createTile(row, col, cell) {
     const targetRow = parseInt(tile.dataset.row);
     const targetCol = parseInt(tile.dataset.col);
     if (sourceTile.classList.contains("piece-container")) {
-      gameState.placePiece(0, pieceType, targetRow, targetCol);
+      gameState.placePiece(pieceType, targetRow, targetCol);
     } else {
       gameState.movePiece(
         parseInt(sourceTile.dataset.row),
@@ -100,6 +103,10 @@ function createTile(row, col, cell) {
       );
     }
     drawGame(gameState);
+    const response = await chooseCPUMove(gameState);
+    gameState.legalMoves = response.legalMoves;
+    gameState.winningMoves = response.winningMoves;
+    doCPUMove(gameState, response.move);
   };
 
   if ((row + col) % 2 === 0) {
@@ -152,6 +159,46 @@ function drawPieceBank(gameState) {
     updateCounter(gameState, pieceType, true);
     updateCounter(gameState, pieceType, false);
   }
+}
+
+function drawTurn(gameState) {
+  const turnElement = document.getElementById("turn-counter");
+  turnElement.textContent = `It's ${
+    gameState.turn === 0 ? "your" : "the CPU's"
+  } turn!`;
+}
+
+async function chooseCPUMove(gameState) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        move: {
+          type: true,
+          pieceType: "base",
+          row: Math.floor(Math.random() * 4),
+          col: Math.floor(Math.random() * 4),
+        },
+        legalMoves: [],
+        winningMoves: [],
+      });
+    }, 1000);
+  });
+}
+
+function doCPUMove(gameState, move) {
+  if (move === null || gameState.turn !== 1) {
+    return false;
+  }
+  // Place
+  if (move.type) {
+    gameState.placePiece(move.pieceType, move.row, move.col);
+  }
+  // Move
+  else {
+    gameState.movePiece(move.row1, move.col1, move.row2, move.col2);
+  }
+  drawGame(gameState);
+  return true;
 }
 
 export function initCorintho() {
