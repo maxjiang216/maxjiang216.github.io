@@ -169,20 +169,23 @@ function drawTurn(gameState) {
 }
 
 async function chooseCPUMove(gameState) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        move: {
-          type: true,
-          pieceType: "base",
-          row: Math.floor(Math.random() * 4),
-          col: Math.floor(Math.random() * 4),
-        },
-        legalMoves: [],
-        winningMoves: [],
-      });
-    }, 1000);
-  });
+  const serviceUrl = "https://test-service-oduku67f7a-uc.a.run.app/choose_move";
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      gameState: gameState,
+      timeLimit: 10000,
+    }),
+  };
+  const response = await fetch(serviceUrl, requestOptions);
+  if (!response.ok) {
+    throw new Error(`HTTP error ${response.status}`);
+  }
+  const moveData = await response.json();
+  return moveData;
 }
 
 function doCPUMove(gameState, move) {
