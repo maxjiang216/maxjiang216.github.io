@@ -11,8 +11,6 @@ class GameState {
       { id: 1, pieceCounts: { base: 4, column: 4, capital: 4 } },
     ];
     this.turn = 0;
-    this.legalMoves = [];
-    this.winningMoves = [];
   }
 
   placePiece(pieceType, row, col) {

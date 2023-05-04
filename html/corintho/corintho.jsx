@@ -76,7 +76,7 @@ function createTile(row, col, cell) {
     event.preventDefault();
 
     // Do nothing if it's the CPU's turn
-    if (gameState.turn === 1) {
+    if (gameState.turn !== 0) {
       return;
     }
 
@@ -104,9 +104,11 @@ function createTile(row, col, cell) {
     }
     drawGame(gameState);
     const response = await chooseCPUMove(gameState);
-    gameState.legalMoves = response.legalMoves;
-    gameState.winningMoves = response.winningMoves;
+    gameState.legalMoves = response["legal_moves"]
     doCPUMove(gameState, response.move);
+    if (response.is_done) {
+      endGame(response.has_won ? "loss" : "draw", gameState);
+    }
   };
 
   if ((row + col) % 2 === 0) {
@@ -169,7 +171,7 @@ function drawTurn(gameState) {
 }
 
 async function chooseCPUMove(gameState) {
-  const serviceUrl = "https://test-service-oduku67f7a-uc.a.run.app/choose_move";
+  const serviceUrl = "https://corintho-service-oduku67f7a-uc.a.run.app/choose_move";
   const requestOptions = {
     method: "POST",
     headers: {
@@ -177,7 +179,9 @@ async function chooseCPUMove(gameState) {
     },
     body: JSON.stringify({
       gameState: gameState,
-      timeLimit: 10000,
+      timeLimit: 2,
+      searchesPerEval: 100,
+      maxNodes: 10000,
     }),
   };
   const response = await fetch(serviceUrl, requestOptions);
@@ -185,6 +189,56 @@ async function chooseCPUMove(gameState) {
     throw new Error(`HTTP error ${response.status}`);
   }
   const moveData = await response.json();
+
+  if ("pre-result" in moveData) {
+    endGame(moveData["pre-result"], gameState);
+  }
+
+  const moveId = moveData.move;
+  const mtype = moveId >= 48;
+  const pieceTypes = ["base", "column", "capital"];
+
+  if (mtype) {
+    moveData.move = {
+      "type": true,
+      "pieceType": pieceTypes[Math.floor((moveId - 48) / 16)],
+      "row": Math.floor((moveId % 16) / 4),
+      "col": moveId % 4,
+    }
+  } else if (moveId < 12) {
+    moveData.move = {
+      "type": false,
+      "sourceRow": Math.floor(moveId / 3),
+      "sourceCol": moveId % 3,
+      "targetRow": Math.floor(moveId / 3),
+      "targetCol": moveId % 3 + 1,
+    };
+  } else if (moveId < 24) {
+    moveData.move = {
+      "type": false,
+      "sourceRow": Math.floor((moveId - 12) / 4),
+      "sourceCol": moveId % 4,
+      "targetRow": Math.floor((moveId - 12) / 4) + 1,
+      "targetCol": moveId % 4,
+    };
+  } else if (moveId < 36) {
+    moveData.move = {
+      "type": false,
+      "sourceRow": Math.floor((moveId - 24) / 3),
+      "sourceCol": moveId % 3 + 1,
+      "targetRow": Math.floor((moveId - 24) / 3),
+      "targetCol": moveId % 3,
+    };
+  } else {
+    moveData.move = {
+      "type": false,
+      "sourceRow": Math.floor((moveId - 32) / 4),
+      "sourceCol": moveId % 4,
+      "targetRow": Math.floor((moveId - 32) / 4) - 1,
+      "targetCol": moveId % 4,
+    };
+  }
+
   return moveData;
 }
 
@@ -198,10 +252,23 @@ function doCPUMove(gameState, move) {
   }
   // Move
   else {
-    gameState.movePiece(move.row1, move.col1, move.row2, move.col2);
+    gameState.movePiece(move.sourceRow, move.sourceCol, move.targetRow, move.targetCol);
   }
   drawGame(gameState);
   return true;
+}
+
+function endGame(result, gameState) {
+  const turnElement = document.getElementById("turn-counter");
+  if (result === "win") {
+    turnElement.textContent = "You won!";
+  } else if (result === "draw") {
+    turnElement.textContent = "It's a draw!";
+  } else {
+    turnElement.textContent = "You lost!";
+  }
+  gameState.turn = -1;
+  drawGame();
 }
 
 export function initCorintho() {
