@@ -1,6 +1,6 @@
 import {
   GameState
-} from "./game";
+} from "./game.js";
 
 let gameState;
 
