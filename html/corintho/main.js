@@ -1,6 +1,6 @@
 import {
   initCorintho
-} from "./corintho.jsx";
+} from "./corintho.js";
 
 initCorintho();
 
