@@ -11,6 +11,7 @@ class GameState {
       { id: 1, pieceCounts: { base: 4, column: 4, capital: 4 } },
     ];
     this.turn = 0;
+    this.legalMoves = Array.from({ length: 48 }, (_, i) => i + 48);
   }
 
   placePiece(pieceType, row, col) {
@@ -53,6 +54,38 @@ class GameState {
 
     this.turn = 1 - this.turn;
   }
+
+  isLegalPlace(pieceType, row, col) {
+    const moveId = 48 + ["base", "column", "capital"].indexOf(pieceType) * 16 + row * 4 + col;
+    return this.legalMoves.includes(moveId);
+  }
+
+  isLegalMove(sourceRow, sourceCol, targetRow, targetCol) {
+    // Make sure it is orthogonally adjacent
+    if (Math.abs(sourceRow - targetRow) + Math.abs(sourceCol - targetCol) !== 1) {
+      return false;
+    }
+    let moveId;
+    // Right
+    if (sourceCol < targetCol) {
+      moveId = sourceRow * 3 + sourceCol;
+    }
+    // Down
+    else if (sourceRow < targetRow) {
+      moveId = 12 + sourceRow * 4 + sourceCol;
+    }
+    // Left
+    else if (sourceCol > targetCol) {
+      moveId = 24 + sourceRow * 3 + sourceCol - 1;
+    }
+    // Up
+    else {
+      moveId = 36 + (sourceRow - 1) * 4 + sourceCol;
+    }
+    return this.legalMoves.includes(moveId);
+  }
 }
+
+
 
 export { GameState };

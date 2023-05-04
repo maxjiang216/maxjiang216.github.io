@@ -26,7 +26,9 @@ function addDragEventsToPieces() {
 function drawGame(gameState) {
   drawBoard(gameState);
   drawPieceBank(gameState);
-  drawTurn(gameState);
+  if (gameState.turn === 0 || gameState.turn === 1) {
+    drawTurn(gameState);
+  }
 }
 
 function drawBoard(gameState) {
@@ -93,8 +95,17 @@ function createTile(row, col, cell) {
     const targetRow = parseInt(tile.dataset.row);
     const targetCol = parseInt(tile.dataset.col);
     if (sourceTile.classList.contains("piece-container")) {
+      if (!gameState.isLegalPlace(pieceType, targetRow, targetCol)) {
+        return;
+      }
       gameState.placePiece(pieceType, targetRow, targetCol);
     } else {
+      if (!gameState.isLegalMove(parseInt(sourceTile.dataset.row),
+      parseInt(sourceTile.dataset.col),
+      targetRow,
+      targetCol)) {
+        return;
+      }
       gameState.movePiece(
         parseInt(sourceTile.dataset.row),
         parseInt(sourceTile.dataset.col),
@@ -167,7 +178,7 @@ function drawTurn(gameState) {
   const turnElement = document.getElementById("turn-counter");
   turnElement.textContent = `It's ${
     gameState.turn === 0 ? "your" : "the CPU's"
-  } turn!`;
+  } turn!${gameState.turn === 0 ? "" : " (thinking...)"}`;
 }
 
 async function chooseCPUMove(gameState) {
@@ -179,8 +190,8 @@ async function chooseCPUMove(gameState) {
     },
     body: JSON.stringify({
       gameState: gameState,
-      timeLimit: 2,
-      searchesPerEval: 100,
+      timeLimit: 3,
+      searchesPerEval: 300,
       maxNodes: 10000,
     }),
   };
@@ -268,7 +279,7 @@ function endGame(result, gameState) {
     turnElement.textContent = "You lost!";
   }
   gameState.turn = -1;
-  drawGame();
+  drawGame(gameState);
 }
 
 export function initCorintho() {
