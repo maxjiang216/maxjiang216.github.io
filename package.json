@@ -1,0 +1,25 @@
+{
+  "name": "maxjiang216.github.io",
+  "version": "1.0.0",
+  "description": "Repo for my personal website.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxjiang216/maxjiang216.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxjiang216/maxjiang216.github.io/issues"
+  },
+  "homepage": "https://github.com/maxjiang216/maxjiang216.github.io#readme",
+  "devDependencies": {
+    "vite": "^4.2.2"
+  }
+}
