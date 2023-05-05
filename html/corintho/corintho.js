@@ -182,7 +182,7 @@ function drawTurn(gameState) {
 }
 
 async function chooseCPUMove(gameState) {
-  const serviceUrl = "https://corintho-service-oduku67f7a-uc.a.run.app/choose_move";
+  const serviceUrl = "https://corintho-tflite-oduku67f7a-uc.a.run.app/choose_move";
   const requestOptions = {
       method: "POST",
       headers: {
@@ -190,9 +190,9 @@ async function chooseCPUMove(gameState) {
       },
       body: JSON.stringify({
           gameState: gameState,
-          timeLimit: 3,
-          searchesPerEval: 300,
-          maxNodes: 10000,
+          timeLimit: 1,
+          searchesPerEval: 100,
+          maxNodes: 30000,
       }),
   };
   const response = await fetch(serviceUrl, requestOptions);

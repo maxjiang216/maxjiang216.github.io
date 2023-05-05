@@ -4,7 +4,7 @@ import {
 
 initCorintho();
 
-const serviceUrl = "https://corintho-service-oduku67f7a-uc.a.run.app/warm_up";
+const serviceUrl = "https://corintho-tflite-oduku67f7a-uc.a.run.app/warm_up";
 const requestOptions = {
   method: "POST",
   headers: {
