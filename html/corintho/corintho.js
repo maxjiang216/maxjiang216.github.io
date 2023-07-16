@@ -182,7 +182,13 @@ function drawTurn(gameState) {
 }
 
 async function chooseCPUMove(gameState) {
-  const serviceUrl = "https://corintho-tflite-oduku67f7a-uc.a.run.app/choose_move";
+    console.log(JSON.stringify({
+        gameState: gameState,
+        timeLimit: 1,
+        searchesPerEval: 100,
+        maxNodes: 30000,
+    }))
+  const serviceUrl = "https://corintho-play-oduku67f7a-uc.a.run.app/choose_move";
   const requestOptions = {
       method: "POST",
       headers: {
