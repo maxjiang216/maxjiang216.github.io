@@ -190,9 +190,9 @@ async function chooseCPUMove(gameState) {
       },
       body: JSON.stringify({
           gameState: gameState,
-          timeLimit: 1,
-          searchesPerEval: 100,
-          maxNodes: 30000,
+          timeLimit: 1.5,
+          searchesPerEval: 16,
+          maxNodes: 0,
       }),
   };
   const response = await fetch(serviceUrl, requestOptions);
@@ -200,6 +200,7 @@ async function chooseCPUMove(gameState) {
       throw new Error(`HTTP error ${response.status}`);
   }
   const moveData = await response.json();
+  console.log(moveData);
 
   if ("pre-result" in moveData) {
       endGame(moveData["pre-result"], gameState);
