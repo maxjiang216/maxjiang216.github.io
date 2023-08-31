@@ -1,0 +1,49 @@
+---
+layout: default
+---
+
+<!-- Header with Post Title -->
+<header class="post-header">
+    <div class="header-bar">
+        <ul>
+          <li class="left"><a href="{{ site.baseurl }}/blog.html">&#8592; Blog</a></li>
+        </ul>
+      </div>      
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-meta">Published on {{ page.date | date: "%B %-d, %Y" }}</p>
+</header>
+
+<!-- Content of the Post -->
+<article class="post-content">
+    {{ content }}
+</article>
+
+<!-- Contact Prompt -->
+<section class="post-contact">
+    <h2>Get in Touch!</h2>
+    <p>Thanks for reading!</p>
+    <p>If you have any feedback about this post,</p>
+    <p>please contact me @</p>
+    <p><a href="mailto:maxjiang216@gmail.com">maxjiang216@gmail.com</a>.</p>
+  </section>  
+
+<script>
+    // Get the header
+    var header = document.querySelector('.header-bar');
+    
+    // Get the offset position of the header
+    var stickyOffset = header.offsetTop;
+    
+    // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function checkSticky() {
+      if (window.pageYOffset > stickyOffset) {
+        header.classList.add('sticky');
+      } else {
+        header.classList.remove('sticky');
+      }
+    }
+    
+    // Listen for scroll events
+    window.addEventListener('scroll', checkSticky);
+    </script>
+    
