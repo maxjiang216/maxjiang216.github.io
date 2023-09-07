@@ -2,6 +2,7 @@
 layout: post
 title: "How Interest Can Work Without Inflation"
 date: 2023-08-07
+permalink: /interest-wo-inflation/
 ---
 
 I’ve now seen some people claim that having a hard money or a money with fixed or decreasing supply would prevent loaning money with positive interest. The intuitive idea is that if all lenders were able to pay back their loans with positive interest, there would have to be an increase in the money supply. This is not true, and simple analysis can debunk this claim.
