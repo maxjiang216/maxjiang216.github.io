@@ -1,10 +1,16 @@
+---
+layout: default
+title: Corintho
+permalink: /corintho/
+---
+
 <!DOCTYPE html>
 <html lang="">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corintho</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/html/corintho/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   </head>
   <body>
@@ -16,36 +22,39 @@
       <div id="piece-banks">
         <div id="piece-bank-cpu">
           <div class="piece-container">
-            <img src="./capital.png" class="piece-cpu" id="capital-cpu" alt="capital" />
+            <img src="{{ site.baseurl }}/html/corintho/capital.png" class="piece-cpu" id="capital-cpu" alt="capital" />
             <div class="counter" id="counter-capital-cpu">4</div>
           </div>
           <div class="piece-container">
-            <img src="./column.png" class="piece-cpu" id="column-cpu" alt="column" />
+            <img src="{{ site.baseurl }}/html/corintho/column.png" class="piece-cpu" id="column-cpu" alt="column" />
             <div class="counter" id="counter-column-cpu">4</div>
           </div>
           <div class="piece-container">
-            <img src="./base.png" class="piece-cpu" id="base-cpu" alt="base" />
+            <img src="{{ site.baseurl }}/html/corintho/base.png" class="piece-cpu" id="base-cpu" alt="base" />
             <div class="counter" id="counter-base-cpu">4</div>
           </div>
         </div>
         <div id="turn-counter">It's your turn!</div>
         <div id="piece-bank-player">
           <div class="piece-container">
-            <img src="./capital.png" draggable="true" class="piece" id="capital" alt="capital" />
+            <img src="{{ site.baseurl }}/html/corintho/capital.png" draggable="true" class="piece" id="capital" alt="capital" />
             <div class="counter" id="counter-capital">4</div>
           </div>
           <div class="piece-container">
-            <img src="./column.png" draggable="true" class="piece" id="column" alt="column" />
+            <img src="{{ site.baseurl }}/html/corintho/column.png" draggable="true" class="piece" id="column" alt="column" />
             <div class="counter" id="counter-column">4</div>
           </div>
           <div class="piece-container">
-            <img src="./base.png" draggable="true" class="piece" id="base" alt="base" />
+            <img src="{{ site.baseurl }}/html/corintho/base.png" draggable="true" class="piece" id="base" alt="base" />
             <div class="counter" id="counter-base">4</div>
           </div>
         </div>
       </div>
     </div>
-    <script type="module" src="main.js"></script>
+    <script>
+      var PATH = "{{ site.baseurl }}/html/corintho";
+  </script>
+    <script type="module" src="{{ site.baseurl }}/html/corintho/main.js"></script>
     <footer>
       <p>
         <a href="../../index.html">Home</a>

@@ -5,9 +5,9 @@ import {
 let gameState;
 
 const pieceElements = {
-  capital: '<img src="./capital.png" draggable="true" class="piece" alt="capital"/>',
-  column: '<img src="./column.png" draggable="true" class="piece" alt="column"/>',
-  base: '<img src="./base.png" draggable="true" class="piece" alt="base"/>',
+    capital: '<img src="' + PATH + '/capital.png" draggable="true" class="piece" alt="capital"/>',
+    column: '<img src="' + PATH + '/column.png" draggable="true" class="piece" alt="column"/>',
+    base: '<img src="' + PATH + '/base.png" draggable="true" class="piece" alt="base"/>',
 };
 
 function addDragEventToPiece(piece) {

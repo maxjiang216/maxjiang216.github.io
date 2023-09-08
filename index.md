@@ -15,9 +15,9 @@ title: "Home"
 ## Projects
 
 - [Corintho AI <i class="fab fa-github"></i>](https://github.com/maxjiang216/corintho-ai){:target="_blank"}
-- [Play Corintho!](html/corintho/corintho.html)
-- [Rubik's Cube Solver](html/rubik/rubik.html)
-- [Big 2 Card Game Variant](html/cardgame/cardgame.html)
+- [Play Corintho!](corintho)
+- [Rubik's Cube Solver](rubik)
+- [Big 2 Card Game Variant](cardgame)
 - [Anki Scraper <i class="fab fa-github"></i>](https://github.com/maxjiang216/Anki-Scrapers){:target="_blank"}
 
 ## Other
