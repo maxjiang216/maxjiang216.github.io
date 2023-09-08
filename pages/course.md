@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Coursework"
+permalink: /course/
 scripts:
   - "https://cdn.jsdelivr.net/npm/tablesort@5.2.0/dist/tablesort.min.js"
 ---

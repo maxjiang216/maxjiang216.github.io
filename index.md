@@ -7,8 +7,8 @@ title: "Home"
 
 ## Info
 
-- [About](pages/about.html)
-- [Contact](pages/contact.html)
+- [About](about)
+- [Contact](contact)
 - [LinkedIn <i class="fab fa-linkedin"></i>](https://www.linkedin.com/in/max-jiang-8041951a5/){:target="_blank"}
 - [GitHub <i class="fab fa-github"></i>](https://github.com/maxjiang216){:target="_blank"}
 
@@ -22,6 +22,6 @@ title: "Home"
 
 ## Other
 
-- [Blog](blog.html)
-- [Courses (University of Waterloo)](pages/course.html)
-- [Rubik's Cube Speedsolving](pages/speedsolving.html)
+- [Blog](blog)
+- [Courses (University of Waterloo)](course)
+- [Rubik's Cube Speedsolving](speedsolving)

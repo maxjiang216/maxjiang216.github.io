@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Speedsolving"
+permalink: /speedsolving/
 ---
 
 # Speedsolving
