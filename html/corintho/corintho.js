@@ -193,7 +193,7 @@ async function chooseCPUMove(gameState) {
           timeLimit: 1.5,
           searchesPerEval: 16,
           maxNodes: 0,
-          password: "3|dYV#@~7yohCcCz.uFw^VfK~2)eg&r@*m!s7_$`!*Pr@e#355yA&Ziy`isx=C^+u$!p@S^&_DDX^5LXZfQU(7f7v^)j7do@JExUR|C)~FAWMyZ_np$`Zsgp)gtJ/R=$",
+          password: "corintho",
       }),
   };
   const response = await fetch(serviceUrl, requestOptions);
