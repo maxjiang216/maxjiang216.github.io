@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Extending Saifedean's Stats"
-date: 2023-10-18
+date: 2023-10-19
 permalink: /extending-saifs-stats/
 ---
 
@@ -75,7 +75,7 @@ As we have seen, two years later, Bitcoin has still never been down over a four-
 - A recession or depression in many parts of the world due both to the COVID-19 lockdowns and the boom-bust cycle
 - China's 2021 Bitcoin mining ban disrupting the 2021 bull market due to Chinese miners liquidating their Bitcoin to relocate to neighboring countries
 
-More recently, we have discovered that Sam Bankman-Fried had been manipulating Bitcoin's price through FTX, most notably by selling customers more Bitcoin than FTX owned. Essentially, FTX was engaging in fractional-reserve banking with respect to Bitcoin, which could have significantly increased Bitcoin's supply and stock-to-flow. In effect, Bitcoin became like any other commodity: it experienced an increase in production following an increase in price. This significantly moderated the peak price during the bull run.
+More recently, there has also been speculation that Sam Bankman-Fried's FTX had been creating a significant amount of "paper" Bitcoin. That is, FTX customers' claims on Bitcoin were not fully backed by real Bitcoin. This could have significantly increase the number of Bitcoin the market thought was available, decreasing the effective stock-to-flow. Thus, Bitcoin became like any other commodity: it experienced an increase in production following an increase in price. This significantly moderated the peak price during the bull run.
 
 However, there are still reasons to believe that the next bull market could be bigger than the previous. These reasons include:
 - A significant demand shock due to a Bitcoin ETF in the US
