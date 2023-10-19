@@ -33,7 +33,7 @@ Price volatility is one of the greatest hurdles preventing widespread Bitcoin ad
 
 "Bitcoin's volatility derives from the fact that its **supply is utterly inflexible and not responsive to demand changes** [...] For any regular commodity, the variation in demand will affect the production decisions of producers of the commodity: **an increase in demand causes them to increase their production, moderating the rise in the price** [...] **a decrease in demand would cause producers to decrease their supply**."
 
-That being said, as Bitcoin's price increases and thus the liquidity of the Bitcoin market increases, the price volatility will naturally go down. In 2021, Bloomberg published the article [Have $93 Million? You May Be Able to Boost Bitcoin’s Price by 1%](https://www.bloomberg.com/news/articles/2021-03-18/have-93-million-you-may-be-able-to-boost-bitcoin-s-price-by-1) about Bitcoin's relatively sensitive price. $93 million is relatively small. large organizations such as MicroStrategy and the El Salvadorean government often buy much more than that in a single day. As Bitcoin's market cap increases, it will take more and more capital to appreciably change Bitcoin's price. From the Bitcoin Standard:
+That being said, as Bitcoin's price increases and thus the liquidity of the Bitcoin market increases, the price volatility will naturally go down. In 2021, Bloomberg published the article [Have $93 Million? You May Be Able to Boost Bitcoin’s Price by 1%](https://www.bloomberg.com/news/articles/2021-03-18/have-93-million-you-may-be-able-to-boost-bitcoin-s-price-by-1) about Bitcoin's relatively sensitive price. $93 million is relatively small. Large organizations such as MicroStrategy and the El Salvadorean government often buy much more than that in a single day. As Bitcoin's market cap increases, it will take more and more capital to appreciably change Bitcoin's price. From the Bitcoin Standard:
 
 "[A]s the size of the market grows, along with the sophistication and the depth of the financial institutions dealing with Bitcoin, this volatility will likely decline. With a larger and more liquid market, the daily variations in demand are likely to become relatively smaller."
 
@@ -77,7 +77,7 @@ As we have seen, two years later, Bitcoin has still never been down over a four-
 
 More recently, there has also been speculation that Sam Bankman-Fried's FTX had been creating a significant amount of "paper" Bitcoin. That is, FTX customers' claims on Bitcoin were not fully backed by real Bitcoin. This could have significantly increase the number of Bitcoin the market thought was available, decreasing the effective stock-to-flow. Thus, Bitcoin became like any other commodity: it experienced an increase in production following an increase in price. This significantly moderated the peak price during the bull run.
 
-However, there are still reasons to believe that the next bull market could be bigger than the previous. These reasons include:
+On top of the absence of these unfavorable factors, there are also many potential favorable factors that may influence the next bull market. These include:
 - A significant demand shock due to a Bitcoin ETF in the US
 - Increased corporate adoption due to the more favorable FASB rules
 - Significant money printing due to recessions and depressions in the West
