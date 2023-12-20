@@ -21,7 +21,5 @@ title: "Home"
 - [Anki Scraper <i class="fab fa-github"></i>](https://github.com/maxjiang216/Anki-Scrapers){:target="_blank"}
 
 ## Other
-
-- [Blog](blog)
 - [Courses (University of Waterloo)](course)
 - [Rubik's Cube Speedsolving](speedsolving)
