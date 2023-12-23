@@ -8,7 +8,7 @@ scripts:
 
 # Coursework
 
-Here are the courses I have taken or am currently taking at the University of Waterloo, along with the grades I earned in each course.
+I am pursuing a double major in computer science & statistics at the University of Waterloo. Here are the courses I have taken or am currently taking at the University of Waterloo, along with the grades I earned in each course.
 
 <table class="sortable">
     <thead>
