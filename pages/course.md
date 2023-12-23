@@ -29,22 +29,22 @@ Here are the courses I have taken or am currently taking at the University of Wa
         <td>TBD</td>
         <td>Fall '23</td>
     </tr>
-    <tr data-grade="000" data-term="23C">
+    <tr data-grade="091" data-term="23C">
         <td>STAT 330</td>
         <td>Mathematical Statistics</td>
-        <td>TBD</td>
+        <td>91%</td>
         <td>Fall '23</td>
     </tr>
-    <tr data-grade="000" data-term="23C">
+    <tr data-grade="089" data-term="23C">
         <td>STAT 331</td>
         <td>Applied Linear Models</td>
-        <td>TBD</td>
+        <td>89%</td>
         <td>Fall '23</td>
     </tr>
-    <tr data-grade="000" data-term="23C">
+    <tr data-grade="090" data-term="23C">
         <td>STAT 341</td>
         <td>Computational Statistics and Data Analysis</td>
-        <td>TBD</td>
+        <td>90%</td>
         <td>Fall '23</td>
     </tr>
     <tr data-grade="090" data-term="23A">
