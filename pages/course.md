@@ -17,16 +17,16 @@ I am pursuing a double major in computer science & statistics at the University 
         <th class="sortable" data-sort-column="grade">Grade</th>
         <th class="sortable" data-sort-column="term">Term</th>
     </thead>
-    <tr data-grade="000" data-term="23C">
+    <tr data-grade="092" data-term="23C">
         <td>CS 480</td>
         <td>Introduction to Machine Learning</td>
-        <td>TBD</td>
+        <td>92%</td>
         <td>Fall '23</td>
     </tr>
-    <tr data-grade="000" data-term="23C">
+    <tr data-grade="092" data-term="23C">
         <td>CS 485</td>
         <td>Statistical and Computational Foundations of Machine Learning</td>
-        <td>TBD</td>
+        <td>92%</td>
         <td>Fall '23</td>
     </tr>
     <tr data-grade="091" data-term="23C">
