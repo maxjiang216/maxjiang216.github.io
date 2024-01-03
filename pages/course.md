@@ -8,7 +8,9 @@ scripts:
 
 # Coursework
 
-I am pursuing a double major in computer science & statistics at the University of Waterloo. Here are the courses I have taken or am currently taking at the University of Waterloo, along with the grades I earned in each course.
+I am pursuing a double major in computer science & statistics at the University of Waterloo.
+
+Here are the courses I have taken or am currently taking at the University of Waterloo, along with the grades I earned in each course.
 
 <table class="sortable">
     <thead>
@@ -23,10 +25,10 @@ I am pursuing a double major in computer science & statistics at the University 
         <td>92%</td>
         <td>Fall '23</td>
     </tr>
-    <tr data-grade="092" data-term="23C">
+    <tr data-grade="095" data-term="23C">
         <td>CS 485</td>
         <td>Statistical and Computational Foundations of Machine Learning</td>
-        <td>92%</td>
+        <td>95%</td>
         <td>Fall '23</td>
     </tr>
     <tr data-grade="091" data-term="23C">
