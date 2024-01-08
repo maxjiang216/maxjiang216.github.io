@@ -13,4 +13,4 @@ permalink: /about/
 
 # Contact
 
-You can find my contact info [here](../contact.md).
+You can find my contact info [here](../contact/).
