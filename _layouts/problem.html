@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMXML" type="text/javascript"></script>
+    <style>
+        /* Sticky footer styles */
+        .footer-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        /* Add a bottom margin to the main container */
+        .container {
+            margin-bottom: 50px; /* 50px should be at least the height of your footer */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {{ content }}
+    </div>
+    <!-- Footer -->
+    {% unless page.title == "Home" %}
+    <div class="footer-bar">
+        <a href="{{ site.baseurl }}/index.html">Home</a>
+        {% if page.title != "Contact" %}
+            | <a href="{{ site.baseurl }}/pages/contact.html">Contact</a>
+        {% endif %}
+    </div>
+    {% endunless %}
+</body>
+</html>
