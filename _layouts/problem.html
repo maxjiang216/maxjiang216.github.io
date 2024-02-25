@@ -57,7 +57,6 @@
         
         <!-- Problem Section -->
         <section class="problem-description">
-            <h2>Problem</h2>
             {% assign parts = content | split: "<!-- SOLUTION_START -->" %}
             {{ parts[0] | markdownify }}
         </section>
