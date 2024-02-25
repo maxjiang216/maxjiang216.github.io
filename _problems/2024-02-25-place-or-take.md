@@ -2,7 +2,7 @@
 layout: problem
 title: "Take or Place"
 permalink: /place-or-take/
-tags: ["1 player game","optimization","probability"]
+tags: ["1 player game","optimization","expectation"]
 source: quantguide
 ---
 
