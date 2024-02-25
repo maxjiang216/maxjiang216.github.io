@@ -9,7 +9,7 @@ This is a secret page of math problems. This is mostly prep for the Putnam and q
 <ul>
 {% for problem in site.problems %}
     <li>
-    <a href="{{ problems.permalink }}">{{ problem.title }}</a>
+    <a href="{{ problem.permalink }}">{{ problem.title }}</a>
     </li>
 {% endfor %}
 </ul>

@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ page.title }}</title>
+    <div class="header-bar">
+      <ul>
+        <li class="left"><a href="{{ site.baseurl }}/secret-problem">&#8592; Problems</a></li>
+      </ul>
+    </div>   
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMXML" type="text/javascript"></script>
+    <script type="text/javascript" async src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <style>
         /* Sticky footer styles */
         .footer-bar {
@@ -21,19 +26,58 @@
         .container {
             margin-bottom: 50px; /* 50px should be at least the height of your footer */
         }
+        .tags-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #333;
+            border-radius: 3px;
+            padding: 5px 10px;
+            margin: 2px;
+            font-size: 0.85em;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        {{ content }}
+        <h1>{{ page.title }}</h1>
+
+        <div class="tags">
+            {% if page.tags %}
+            <ul class="tags-list">
+                {% for tag in page.tags %}
+                <li class="tag">{{ tag }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        
+        <!-- Problem Section -->
+        <section class="problem-description">
+            <h2>Problem</h2>
+            {% assign parts = content | split: "<!-- SOLUTION_START -->" %}
+            {{ parts[0] | markdownify }}
+        </section>
+        
+        <!-- Solution Section -->
+        {% if parts.size > 1 %}
+        <details class="solution-section">
+            <summary>Solution (click to expand)</summary>
+            <div>
+                {% assign solution_content = parts[1] %}
+                {{ solution_content | markdownify }}
+            </div>
+        </details>
+        {% endif %}
     </div>
     <!-- Footer -->
     {% unless page.title == "Home" %}
     <div class="footer-bar">
         <a href="{{ site.baseurl }}/index.html">Home</a>
-        {% if page.title != "Contact" %}
-            | <a href="{{ site.baseurl }}/pages/contact.html">Contact</a>
-        {% endif %}
+        | <a href="{{ site.baseurl }}/secret-problem/">Problems</a>
     </div>
     {% endunless %}
 </body>

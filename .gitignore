@@ -1,2 +1,3 @@
 python
 node_modules
+/vendor/bundle
