@@ -19,6 +19,42 @@ Here are the courses I have taken or am currently taking at the University of Wa
         <th class="sortable" data-sort-column="grade">Grade</th>
         <th class="sortable" data-sort-column="term">Term</th>
     </thead>
+    <tr data-grade="000" data-term="24B">
+        <td>CS 348</td>
+        <td>Introduction to Database Management</td>
+        <td>TBD</td>
+        <td>Spring '24</td>
+    </tr>
+    <tr data-grade="000" data-term="24B">
+        <td>CS 466</td>
+        <td>Algorithm Design and Analysis</td>
+        <td>TBD</td>
+        <td>Spring '24</td>
+    </tr>
+    <tr data-grade="000" data-term="24B">
+        <td>STAT 443</td>
+        <td>Forecasting</td>
+        <td>TBD</td>
+        <td>Spring '24</td>
+    </tr>
+    <tr data-grade="000" data-term="24B">
+        <td>STAT 444</td>
+        <td>Statistical Learning - Advanced Regression</td>
+        <td>TBD</td>
+        <td>Spring '24</td>
+    </tr>
+    <tr data-grade="000" data-term="24B">
+        <td>CO 250</td>
+        <td>Introduction to Optimization</td>
+        <td>TBD</td>
+        <td>Spring '24</td>
+    </tr>
+    <tr data-grade="000" data-term="24B">
+        <td>AMATH 250</td>
+        <td>Introduction to Differential Equations</td>
+        <td>TBD</td>
+        <td>Spring '24</td>
+    </tr>
     <tr data-grade="092" data-term="23C">
         <td>CS 480</td>
         <td>Introduction to Machine Learning</td>
