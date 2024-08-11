@@ -2,8 +2,6 @@
 layout: default
 title: "Coursework"
 permalink: /course/
-scripts:
-  - "https://cdn.jsdelivr.net/npm/tablesort@5.2.0/dist/tablesort.min.js"
 ---
 
 # Coursework
@@ -46,7 +44,7 @@ Here are the courses I have taken or am currently taking at the University of Wa
         </tr>
             <tr data-grade="000" data-term="25A">
             <td>JAPAN 302R</td>
-            <td>Third-Year Japanese I</td>
+            <td>Third-Year Japanese II</td>
             <td>TBD</td>
             <td>Winter '25</td>
         </tr>
@@ -292,38 +290,3 @@ Here are the courses I have taken or am currently taking at the University of Wa
         </tr>
     </tbody>
 </table>
-
-<script>
-    // Ensure that the script runs after the page is fully loaded
-    window.onload = function() {
-        // Initialize Tablesort
-        new Tablesort(document.querySelector('.sortable'));
-        
-        // Add sorting logic
-        var headers = document.querySelectorAll('table th[data-sort-column]');
-        headers.forEach(function(header) {
-            header.addEventListener('click', function() {
-                var column = header.getAttribute('data-sort-column');
-                var order = header.getAttribute('data-sort-order') || 'asc';
-
-                var tbody = document.querySelector('table tbody');
-                var rows = Array.from(tbody.querySelectorAll('tr'));
-
-                rows.sort(function(a, b) {
-                    var aSortValue = a.getAttribute('data-' + column);
-                    var bSortValue = b.getAttribute('data-' + column);
-                    if (aSortValue < bSortValue) return order === 'asc' ? -1 : 1;
-                    if (aSortValue > bSortValue) return order === 'asc' ? 1 : -1;
-                    return 0;
-                });
-
-                rows.forEach(function(row) {
-                    tbody.appendChild(row);
-                });
-
-                var newOrder = (order === 'asc') ? 'desc' : 'asc';
-                header.setAttribute('data-sort-order', newOrder);
-            });
-        });
-    };
-</script>
