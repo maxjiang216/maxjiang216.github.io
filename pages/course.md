@@ -2,6 +2,8 @@
 layout: default
 title: "Coursework"
 permalink: /course/
+scripts:
+  - "https://www.kryogenix.org/code/browser/sorttable/sorttable.js"
 ---
 
 # Coursework
@@ -44,7 +46,7 @@ Here are the courses I have taken or am currently taking at the University of Wa
         </tr>
             <tr data-grade="000" data-term="25A">
             <td>JAPAN 302R</td>
-            <td>Third-Year Japanese II</td>
+            <td>Third-Year Japanese I</td>
             <td>TBD</td>
             <td>Winter '25</td>
         </tr>
