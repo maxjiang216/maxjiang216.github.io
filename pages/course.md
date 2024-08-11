@@ -292,42 +292,38 @@ Here are the courses I have taken or am currently taking at the University of Wa
         </tr>
     </tbody>
 </table>
+
 <script>
-// Initialize Tablesort
-new Tablesort(document.querySelector('.sortable'));
-
-// Query all sortable headers
-var headers = document.querySelectorAll('table th[data-sort-column]');
-
-// Add click event listener for each header
-headers.forEach(function(header) {
-    header.addEventListener('click', function() {
-        // Get sorting column and order from attributes
-        var column = header.getAttribute('data-sort-column');
-        var order = header.getAttribute('data-sort-order') || 'asc';  // Default to 'asc' if not set
+    // Ensure that the script runs after the page is fully loaded
+    window.onload = function() {
+        // Initialize Tablesort
+        new Tablesort(document.querySelector('.sortable'));
         
-        // Query the table body and rows
-        var tbody = document.querySelector('table tbody');
-        var rows = Array.from(tbody.querySelectorAll('tr'));
-        
-        // Sort rows based on data attributes
-        rows.sort(function(a, b) {
-            var aSortValue = a.getAttribute('data-' + column);
-            var bSortValue = b.getAttribute('data-' + column);
-            if (aSortValue < bSortValue) return order === 'asc' ? -1 : 1;
-            if (aSortValue > bSortValue) return order === 'asc' ? 1 : -1;
-            return 0;
+        // Add sorting logic
+        var headers = document.querySelectorAll('table th[data-sort-column]');
+        headers.forEach(function(header) {
+            header.addEventListener('click', function() {
+                var column = header.getAttribute('data-sort-column');
+                var order = header.getAttribute('data-sort-order') || 'asc';
+
+                var tbody = document.querySelector('table tbody');
+                var rows = Array.from(tbody.querySelectorAll('tr'));
+
+                rows.sort(function(a, b) {
+                    var aSortValue = a.getAttribute('data-' + column);
+                    var bSortValue = b.getAttribute('data-' + column);
+                    if (aSortValue < bSortValue) return order === 'asc' ? -1 : 1;
+                    if (aSortValue > bSortValue) return order === 'asc' ? 1 : -1;
+                    return 0;
+                });
+
+                rows.forEach(function(row) {
+                    tbody.appendChild(row);
+                });
+
+                var newOrder = (order === 'asc') ? 'desc' : 'asc';
+                header.setAttribute('data-sort-order', newOrder);
+            });
         });
-        
-        // Append sorted rows back to the table body
-        rows.forEach(function(row) {
-            tbody.appendChild(row);
-        });
-        
-        // Toggle and update the sort order for the next click
-        var newOrder = (order === 'asc') ? 'desc' : 'asc';
-        header.setAttribute('data-sort-order', newOrder);
-    });
-});
-
+    };
 </script>
