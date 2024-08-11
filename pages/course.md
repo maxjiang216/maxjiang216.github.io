@@ -19,6 +19,36 @@ Here are the courses I have taken or am currently taking at the University of Wa
         <th class="sortable" data-sort-column="grade">Grade</th>
         <th class="sortable" data-sort-column="term">Term</th>
     </thead>
+    <tr data-grade="000" data-term="25A">
+        <td>CS 365</td>
+        <td>Models of Computation</td>
+        <td>TBD</td>
+        <td>Winter '25</td>
+    </tr>
+        <tr data-grade="000" data-term="25A">
+        <td>CS 476</td>
+        <td>Numeric Computation for Financial Modeling</td>
+        <td>TBD</td>
+        <td>Winter '25</td>
+    </tr>
+        <tr data-grade="000" data-term="25A">
+        <td>STAT 332</td>
+        <td>Sampling and Experimental Design</td>
+        <td>TBD</td>
+        <td>Winter '25</td>
+    </tr>
+        <tr data-grade="000" data-term="25A">
+        <td>ENGL 378</td>
+        <td>Professional Communications in Statistics & Actuarial Science</td>
+        <td>TBD</td>
+        <td>Winter '25</td>
+    </tr>
+        <tr data-grade="000" data-term="25A">
+        <td>JAPAN 302R</td>
+        <td>Third-Year Japanese I</td>
+        <td>TBD</td>
+        <td>Winter '25</td>
+    </tr>
     <tr data-grade="000" data-term="24B">
         <td>CS 348</td>
         <td>Introduction to Database Management</td>
