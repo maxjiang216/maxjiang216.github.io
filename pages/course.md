@@ -50,34 +50,34 @@ Here are the courses I have taken or am currently taking at the University of Wa
             <td>TBD</td>
             <td>Winter '25</td>
         </tr>
-        <tr data-grade="000" data-term="24B">
+        <tr data-grade="091" data-term="24B">
             <td>CS 348</td>
             <td>Introduction to Database Management</td>
-            <td>TBD</td>
+            <td>91</td>
             <td>Spring '24</td>
         </tr>
-        <tr data-grade="000" data-term="24B">
+        <tr data-grade="090" data-term="24B">
             <td>CS 466</td>
             <td>Algorithm Design and Analysis</td>
-            <td>TBD</td>
+            <td>90</td>
             <td>Spring '24</td>
         </tr>
-        <tr data-grade="000" data-term="24B">
+        <tr data-grade="086" data-term="24B">
             <td>STAT 443</td>
             <td>Forecasting</td>
-            <td>TBD</td>
+            <td>86</td>
             <td>Spring '24</td>
         </tr>
-        <tr data-grade="000" data-term="24B">
+        <tr data-grade="082" data-term="24B">
             <td>STAT 444</td>
             <td>Statistical Learning - Advanced Regression</td>
-            <td>TBD</td>
+            <td>82</td>
             <td>Spring '24</td>
         </tr>
-        <tr data-grade="000" data-term="24B">
+        <tr data-grade="088" data-term="24B">
             <td>CO 250</td>
             <td>Introduction to Optimization</td>
-            <td>TBD</td>
+            <td>88</td>
             <td>Spring '24</td>
         </tr>
         <tr data-grade="000" data-term="24B">
