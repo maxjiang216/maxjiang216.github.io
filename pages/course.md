@@ -53,37 +53,37 @@ Here are the courses I have taken or am currently taking at the University of Wa
         <tr data-grade="091" data-term="24B">
             <td>CS 348</td>
             <td>Introduction to Database Management</td>
-            <td>91</td>
+            <td>91%</td>
             <td>Spring '24</td>
         </tr>
         <tr data-grade="090" data-term="24B">
             <td>CS 466</td>
             <td>Algorithm Design and Analysis</td>
-            <td>90</td>
+            <td>90%</td>
             <td>Spring '24</td>
         </tr>
         <tr data-grade="086" data-term="24B">
             <td>STAT 443</td>
             <td>Forecasting</td>
-            <td>86</td>
+            <td>86%</td>
             <td>Spring '24</td>
         </tr>
         <tr data-grade="082" data-term="24B">
             <td>STAT 444</td>
             <td>Statistical Learning - Advanced Regression</td>
-            <td>82</td>
+            <td>82%</td>
             <td>Spring '24</td>
         </tr>
         <tr data-grade="088" data-term="24B">
             <td>CO 250</td>
             <td>Introduction to Optimization</td>
-            <td>88</td>
+            <td>88%</td>
             <td>Spring '24</td>
         </tr>
         <tr data-grade="000" data-term="24B">
             <td>AMATH 250</td>
             <td>Introduction to Differential Equations</td>
-            <td>TBD</td>
+            <td>86%</td>
             <td>Spring '24</td>
         </tr>
         <tr data-grade="092" data-term="23C">
