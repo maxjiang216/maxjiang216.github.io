@@ -80,7 +80,7 @@ Here are the courses I have taken or am currently taking at the University of Wa
             <td>88%</td>
             <td>Spring '24</td>
         </tr>
-        <tr data-grade="000" data-term="24B">
+        <tr data-grade="086" data-term="24B">
             <td>AMATH 250</td>
             <td>Introduction to Differential Equations</td>
             <td>86%</td>
