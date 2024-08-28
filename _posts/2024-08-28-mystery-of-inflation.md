@@ -11,14 +11,14 @@ There is a running gag on the show where Akin will talk about "inflation the gov
 
 After listening to the episode, I can only say that I am quite disappointed. I hold Akin in high regard; he is exceptionally intelligent and well-read across various subjects, so I expected more from him, even on a topic outside his usual expertise. While I tried to be as forgiving as possible in judging this episode, there are a few fallacies presented that were almost impossible to interpret as anything besides fundamental misunderstandings of economics.
 
-# Fallacy #1: The "Natural Exchange Rate"
+# Fallacy #1: A "Natural Exchange Rate?"
 
 To illustrate the effect of the money supply on the price of goods, Akin uses an example of a simple economy with only 2 goods: money and jelly beans. The example is as follows:
- > Let’s imagine the government has only minted 100 pennies [...] In our economy, the only goods and services that people want are jelly beans and let’s suppose that at the moment, there are only 100 jelly beans [...] In this economy, what is the price of a jelly bean? It’d be 1 cent [...] The natural exchange rate is 1 cent per jelly bean.
+ > Let’s imagine the government has only minted 100 pennies ... In our economy, the only goods and services that people want are jelly beans and let’s suppose that at the moment, there are only 100 jelly beans ... In this economy, what is the price of a jelly bean? It’d be 1 cent ... The natural exchange rate is 1 cent per jelly bean.
 
-While this example is not meant to capture every possible nuance, examples are intended to convey broader truths. Akin’s example implies that there is a 'natural exchange rate' that can be determined purely by the ratio of money to goods. He goes on to say
+While this example is not meant to capture every possible nuance, examples are intended to convey broader truths. Akin’s example implies that there is a 'natural exchange rate' that can be determined purely by the ratio of money to goods. He goes on to say,
 
- > Soon, there are 200 jelly beans on the market [...] What’s the natural price of a jelly bean now? Half a cent.
+ > Soon, there are 200 jelly beans on the market ... What’s the natural price of a jelly bean now? Half a cent.
  
 Akin continues the segment with similar examples, varying the jelly bean and money supplies and stating that the new price should be according to the proportional change in the amounts of the goods. I think that a lot of people would jump to these same conclusions. However, even in such a simple economy, one cannot make definitive statements about price.
 
@@ -55,5 +55,5 @@ To conclude, I think this episode of Jimmy Akin’s Mysterious World shows the d
 # Resources
 
 For good Austrian School treatments of monetary economics and the need for sound money, I recommend the following books:
- - [The Bitcoin Standard](cryptache.ro/wp-content/uploads/2021/04/The-Bitcoin-Standard-The-Decentralized-Alternative-to-Central-Banking-PDF-Room.pdf) by Saifedean Ammous. This is the best-selling book about Bitcoin, written by Austriain economist Saifedean Ammous.
+ - [The Bitcoin Standard](cryptache.ro/wp-content/uploads/2021/04/The-Bitcoin-Standard-The-Decentralized-Alternative-to-Central-Banking-PDF-Room.pdf) by Saifedean Ammous. This is the best-selling book about Bitcoin, written by Austrian economist Saifedean Ammous.
  - [What has Government Done to Our Money?](mises.org/library/book/what-has-government-done-our-money) by Murray Rothbard. One of the most influential Austrian economists of the 20th century, Murray Rothbard, gives a summary of how government has created the destructive fiat money regime we use today.
