@@ -21,6 +21,6 @@ Use the half-angle formula to get
 
 Simplification gives
 
-\\[(1-\cos^2(x))^2>0\\]
+\\[(1-\cos(x))^2>0\\]
 
 which is true when $$x\in\left(0,\frac{\pi}{2}\right)$$.
