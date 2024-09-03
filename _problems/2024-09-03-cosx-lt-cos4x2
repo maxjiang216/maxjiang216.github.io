@@ -1,0 +1,26 @@
+---
+layout: problem
+title: "Prove cos(x)<cos^4(x/2) for x in (0,pi/2)"
+permalink: /cosx-lt-cos4x2/
+tags: ["expectation"]
+source: mark-joshi
+---
+
+# Problem
+
+Prove
+
+\\[\cos(x)<\cos^4\left(\frac{x}{2}\right),\forall x\in\left(0,\frac{\pi}{2}\right).\\]
+
+<!-- SOLUTION_START -->
+# Solution
+
+Use the half-angle formula to get
+
+\\[\cos(x)<\left(\frac{1+\cos(x)}{2}\right)^2.\]
+
+Simplification gives
+
+\\[(1-\cos^2(x))^2>0\\]
+
+which is true when $$x\in\left(0,\frac{\pi}{2}\right)$$.
