@@ -11,7 +11,7 @@ date: 2019-10-01
 
 Find a quadratic $$P(x)$$ with real coefficients such that
 
-\\[\left|P(x)+\frac{1}{x-4}\right|\leq0.01,\forall x\in[-1,1].\\]
+\\[\left\lvert P(x)+\frac{1}{x-4}\right\rvert\leq0.01,\forall x\in[-1,1].\\]
 
 <!-- SOLUTION_START -->
 # Solution
