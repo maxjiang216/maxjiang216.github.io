@@ -4,6 +4,7 @@ title: "Range of n Points on [0,1]"
 permalink: /range-n-points/
 tags: ["expectation"]
 source: mark-joshi
+date: 2024-02-25
 ---
 
 # Problem
