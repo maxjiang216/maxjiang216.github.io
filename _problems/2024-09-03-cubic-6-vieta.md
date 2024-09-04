@@ -2,7 +2,7 @@
 layout: problem
 title: "Find sum(x_i^6) for x^3-3x+2sqrt(q)=0"
 permalink: /cubic-6-vieta/
-tags: ["polynomial"]
+tags: ["polynomial","algebra"]
 source: dragos
 date: 2019-10-01
 ---

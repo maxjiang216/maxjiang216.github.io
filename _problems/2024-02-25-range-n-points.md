@@ -2,7 +2,7 @@
 layout: problem
 title: "Range of n Points on [0,1]"
 permalink: /range-n-points/
-tags: ["expectation"]
+tags: ["expectation","combo"]
 source: mark-joshi
 date: 2024-02-25
 ---

@@ -2,7 +2,7 @@
 layout: problem
 title: "Prove P(x) is never 14 if P(x)=7 for at least 4 distinct integers"
 permalink: /polynomial-7-not14/
-tags: ["polynomial","integer"]
+tags: ["polynomial","integer","algebra"]
 source: dragos
 date: 2019-10-01
 ---

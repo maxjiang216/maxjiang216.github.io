@@ -2,7 +2,7 @@
 layout: problem
 title: "Find a quadratic with |P(x)+1/(x-4)|<=0.01 for all |x|<=1"
 permalink: /quadratic-abs-ineq/
-tags: ["inequality","polynomial"]
+tags: ["inequality","polynomial","algebra"]
 source: dragos
 date: 2019-10-01
 ---
