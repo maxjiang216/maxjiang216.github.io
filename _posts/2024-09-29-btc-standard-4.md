@@ -51,7 +51,7 @@ Another interesting tidbit to keep in mind. A similar fact: Wilson ran on not pa
 
 > [T]he interventionist policies of Hoover were amplified into what came to be known as the New Deal.
 
-There is a famous quote by one of FDR's underlings where he admitted that all of the New Deal policies were taken from Hoover. (I can't find it right now. If you can, please contact me and I'll add it here.)
+There is a famous quote by one of FDR's underlings where he admitted that all of the New Deal policies were taken from Hoover. ([Source](https://www.gilderlehrman.org/history-resources/spotlight-primary-source/herbert-hoover-great-depression-and-new-deal-1931%E2%80%931933))
 
 > President Roosevelt issued an executive order banning the private ownership of gold, forcing Americans to sell their gold to the U.S. Treasury at a rate of $20.67 per ounce [...] Roosevelt then revalued the dollar on the international market from $20.67 per ounce to $35 per ounce, a 41% devaluation of the dollar in real terms (gold).
 
