@@ -27,12 +27,6 @@ Here are the courses I have taken or am currently taking at the University of Wa
             <td>Winter '25</td>
         </tr>
             <tr data-grade="000" data-term="25A">
-            <td>CS 476</td>
-            <td>Numeric Computation for Financial Modeling</td>
-            <td>TBD</td>
-            <td>Winter '25</td>
-        </tr>
-            <tr data-grade="000" data-term="25A">
             <td>STAT 332</td>
             <td>Sampling and Experimental Design</td>
             <td>TBD</td>
@@ -45,8 +39,14 @@ Here are the courses I have taken or am currently taking at the University of Wa
             <td>Winter '25</td>
         </tr>
             <tr data-grade="000" data-term="25A">
-            <td>JAPAN 302R</td>
-            <td>Third-Year Japanese II</td>
+            <td>CO 487</td>
+            <td>Applied Cryptography</td>
+            <td>TBD</td>
+            <td>Winter '25</td>
+        </tr>
+        <tr data-grade="000" data-term="25A">
+            <td>LS 236</td>
+            <td>Law and Society in the Middle Ages</td>
             <td>TBD</td>
             <td>Winter '25</td>
         </tr>
