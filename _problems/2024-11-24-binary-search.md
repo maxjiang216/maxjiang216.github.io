@@ -13,6 +13,7 @@ date: 2024-11-24
 2. Given a sorted list, find the first element whose value is at least the given value.
 3. Given a sorted list, find the first element whose value is greater than the given value.
 4. Given a non-decreasing function `f` on the range 0 to 1, find `x` such that `abs(f(x)-t) < d`, assuming such a value exists in [0, 1].
+
 <!-- SOLUTION_START -->
 # Solution
 
