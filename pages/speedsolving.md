@@ -15,3 +15,5 @@ My personal best time for solving the Rubik's Cube is 4.36s. My other accomplish
  - Rubik's Cube One-Handed: 8.57s personal best
 
 My World Cube Association profile can be found [here](https://www.worldcubeassociation.org/persons/2015JIAN04){:target="_blank"}.
+
+I am building out a database of algorithms I use [here](algs).
