@@ -14,281 +14,283 @@ Here are the courses I have taken or am currently taking at the University of Wa
 
 <table class="sortable">
     <thead>
-        <th class="sortable">Course Code</th>
-        <th class="sortable">Course Title</th>
-        <th class="sortable" data-sort-column="grade">Grade</th>
-        <th class="sortable" data-sort-column="term">Term</th>
+        <tr>
+            <th>Course Code</th>
+            <th>Course Title</th>
+            <th>Grade</th>
+            <th>Term</th>
+        </tr>
     </thead>
     <tbody>
-        <tr data-grade="000" data-term="25A">
+        <tr>
             <td>CS 365</td>
             <td>Models of Computation</td>
-            <td>TBD</td>
-            <td>Winter '25</td>
+            <td sorttable_customkey="0">TBD</td>
+            <td sorttable_customkey="2025.1">Winter '25</td>
         </tr>
-            <tr data-grade="000" data-term="25A">
+        <tr>
             <td>STAT 332</td>
             <td>Sampling and Experimental Design</td>
-            <td>TBD</td>
-            <td>Winter '25</td>
+            <td sorttable_customkey="0">TBD</td>
+            <td sorttable_customkey="2025.1">Winter '25</td>
         </tr>
-            <tr data-grade="000" data-term="25A">
+        <tr>
             <td>ENGL 378</td>
             <td>Professional Communications in Statistics and Actuarial Science</td>
-            <td>TBD</td>
-            <td>Winter '25</td>
+            <td sorttable_customkey="0">TBD</td>
+            <td sorttable_customkey="2025.1">Winter '25</td>
         </tr>
-            <tr data-grade="000" data-term="25A">
+        <tr>
             <td>CO 487</td>
             <td>Applied Cryptography</td>
-            <td>TBD</td>
-            <td>Winter '25</td>
+            <td sorttable_customkey="0">TBD</td>
+            <td sorttable_customkey="2025.1">Winter '25</td>
         </tr>
-        <tr data-grade="000" data-term="25A">
+        <tr>
             <td>LS 236</td>
             <td>Law and Society in the Middle Ages</td>
-            <td>TBD</td>
-            <td>Winter '25</td>
+            <td sorttable_customkey="0">TBD</td>
+            <td sorttable_customkey="2025.1">Winter '25</td>
         </tr>
-        <tr data-grade="091" data-term="24B">
+        <tr>
             <td>CS 348</td>
             <td>Introduction to Database Management</td>
-            <td>91%</td>
-            <td>Spring '24</td>
+            <td sorttable_customkey="91">91%</td>
+            <td sorttable_customkey="2024.1">Spring '24</td>
         </tr>
-        <tr data-grade="090" data-term="24B">
+        <tr>
             <td>CS 466</td>
             <td>Algorithm Design and Analysis</td>
-            <td>90%</td>
-            <td>Spring '24</td>
+            <td sorttable_customkey="90">90%</td>
+            <td sorttable_customkey="2024.1">Spring '24</td>
         </tr>
-        <tr data-grade="086" data-term="24B">
+        <tr>
             <td>STAT 443</td>
             <td>Forecasting</td>
-            <td>86%</td>
-            <td>Spring '24</td>
+            <td sorttable_customkey="86">86%</td>
+            <td sorttable_customkey="2024.1">Spring '24</td>
         </tr>
-        <tr data-grade="082" data-term="24B">
+        <tr>
             <td>STAT 444</td>
             <td>Statistical Learning - Advanced Regression</td>
-            <td>82%</td>
-            <td>Spring '24</td>
+            <td sorttable_customkey="82">82%</td>
+            <td sorttable_customkey="2024.1">Spring '24</td>
         </tr>
-        <tr data-grade="088" data-term="24B">
+        <tr>
             <td>CO 250</td>
             <td>Introduction to Optimization</td>
-            <td>88%</td>
-            <td>Spring '24</td>
+            <td sorttable_customkey="88">88%</td>
+            <td sorttable_customkey="2024.1">Spring '24</td>
         </tr>
-        <tr data-grade="086" data-term="24B">
+        <tr>
             <td>AMATH 250</td>
             <td>Introduction to Differential Equations</td>
-            <td>86%</td>
-            <td>Spring '24</td>
+            <td sorttable_customkey="86">86%</td>
+            <td sorttable_customkey="2024.1">Spring '24</td>
         </tr>
-        <tr data-grade="092" data-term="23C">
+        <tr>
             <td>CS 480</td>
             <td>Introduction to Machine Learning</td>
-            <td>92%</td>
-            <td>Fall '23</td>
+            <td sorttable_customkey="92">92%</td>
+            <td sorttable_customkey="2023.1">Fall '23</td>
         </tr>
-        <tr data-grade="095" data-term="23C">
+        <tr>
             <td>CS 485</td>
             <td>Statistical and Computational Foundations of Machine Learning</td>
-            <td>95%</td>
-            <td>Fall '23</td>
+            <td sorttable_customkey="95">95%</td>
+            <td sorttable_customkey="2023.1">Fall '23</td>
         </tr>
-        <tr data-grade="091" data-term="23C">
+        <tr>
             <td>STAT 330</td>
             <td>Mathematical Statistics</td>
-            <td>91%</td>
-            <td>Fall '23</td>
+            <td sorttable_customkey="91">91%</td>
+            <td sorttable_customkey="2023.1">Fall '23</td>
         </tr>
-        <tr data-grade="089" data-term="23C">
+        <tr>
             <td>STAT 331</td>
             <td>Applied Linear Models</td>
-            <td>89%</td>
-            <td>Fall '23</td>
+            <td sorttable_customkey="89">89%</td>
+            <td sorttable_customkey="2023.1">Fall '23</td>
         </tr>
-        <tr data-grade="090" data-term="23C">
+        <tr>
             <td>STAT 341</td>
             <td>Computational Statistics and Data Analysis</td>
-            <td>90%</td>
-            <td>Fall '23</td>
+            <td sorttable_customkey="90">90%</td>
+            <td sorttable_customkey="2023.1">Fall '23</td>
         </tr>
-        <tr data-grade="090" data-term="23A">
+        <tr>
             <td>CS 341</td>
             <td>Algorithms</td>
-            <td>90%</td>
-            <td>Winter '23</td>
+            <td sorttable_customkey="90">90%</td>
+            <td sorttable_customkey="2023.1">Winter '23</td>
         </tr>
-        <tr data-grade="082" data-term="23A">
+        <tr>
             <td>CS 350</td>
             <td>Operating Systems</td>
-            <td>82%</td>
-            <td>Winter '23</td>
+            <td sorttable_customkey="82">82%</td>
+            <td sorttable_customkey="2023.1">Winter '23</td>
         </tr>
-        <tr data-grade="088" data-term="23A">
+        <tr>
             <td>CS 479</td>
             <td>Neural Networks</td>
-            <td>88%</td>
-            <td>Winter '23</td>
+            <td sorttable_customkey="88">88%</td>
+            <td sorttable_customkey="2023.1">Winter '23</td>
         </tr>
-        <tr data-grade="099" data-term="23A">
+        <tr>
             <td>STAT 241</td>
             <td>Statistics (Advanced Level)</td>
-            <td>99%</td>
-            <td>Winter '23</td>
+            <td sorttable_customkey="99">99%</td>
+            <td sorttable_customkey="2023.1">Winter '23</td>
         </tr>
-        <tr data-grade="093" data-term="23A">
+        <tr>
             <td>JAPAN 301R</td>
             <td>Third-Year Japanese I</td>
-            <td>93%</td>
-            <td>Winter '23</td>
+            <td sorttable_customkey="93">93%</td>
+            <td sorttable_customkey="2023.1">Winter '23</td>
         </tr>
-        <tr data-grade="095" data-term="22B">
+        <tr>
             <td>CS 240</td>
             <td>Data Structures & Data Management</td>
-            <td>95%</td>
-            <td>Spring '22</td>
+            <td sorttable_customkey="95">95%</td>
+            <td sorttable_customkey="2022.1">Spring '22</td>
         </tr>
-        <tr data-grade="089" data-term="22B">
+        <tr>
             <td>CS 251</td>
             <td>Computer Organization & Design</td>
-            <td>89%</td>
-            <td>Spring '22</td>
+            <td sorttable_customkey="89">89%</td>
+            <td sorttable_customkey="2022.1">Spring '22</td>
         </tr>
-        <tr data-grade="085" data-term="22B">
+        <tr>
             <td>CS 371</td>
             <td>Introduction to Computational Mathematics</td>
-            <td>85%</td>
-            <td>Spring '22</td>
+            <td sorttable_customkey="85">85%</td>
+            <td sorttable_customkey="2022.1">Spring '22</td>
         </tr>
-        <tr data-grade="094" data-term="22B">
+        <tr>
             <td>STAT 333</td>
             <td>Stochastic Processes I</td>
-            <td>94%</td>
-            <td>Spring '22</td>
+            <td sorttable_customkey="94">94%</td>
+            <td sorttable_customkey="2022.1">Spring '22</td>
         </tr>
-        <tr data-grade="100" data-term="22B">
+        <tr>
             <td>PMATH 351</td>
             <td>Real Analysis</td>
-            <td>100%</td>
-            <td>Spring '22</td>
+            <td sorttable_customkey="100">100%</td>
+            <td sorttable_customkey="2022.1">Spring '22</td>
         </tr>
-        <tr data-grade="092" data-term="22B">
+        <tr>
             <td>ECON 322</td>
             <td>Econometric Analysis I</td>
-            <td>92%</td>
-            <td>Spring '22</td>
+            <td sorttable_customkey="92">92%</td>
+            <td sorttable_customkey="2022.1">Spring '22</td>
         </tr>
-        <tr data-grade="098" data-term="21C">
+        <tr>
             <td>CS 241</td>
             <td>Foundations of Sequential Programs</td>
-            <td>98%</td>
-            <td>Fall '21</td>
+            <td sorttable_customkey="98">98%</td>
+            <td sorttable_customkey="2021.1">Fall '21</td>
         </tr>
-        <tr data-grade="090" data-term="21C">
+        <tr>
             <td>CS 245</td>
             <td>Logic and Computation</td>
-            <td>90%</td>
-            <td>Fall '21</td>
+            <td sorttable_customkey="90">90%</td>
+            <td sorttable_customkey="2021.1">Fall '21</td>
         </tr>
-        <tr data-grade="097" data-term="21C">
+        <tr>
             <td>CS 246E</td>
             <td>Object-Oriented Software Development (Enriched)</td>
-            <td>97%</td>
-            <td>Fall '21</td>
+            <td sorttable_customkey="97">97%</td>
+            <td sorttable_customkey="2021.1">Fall '21</td>
         </tr>
-        <tr data-grade="099" data-term="21C">
+        <tr>
             <td>STAT 240</td>
             <td>Probability (Advanced Level)</td>
-            <td>99%</td>
-            <td>Fall '21</td>
+            <td sorttable_customkey="99">99%</td>
+            <td sorttable_customkey="2021.1">Fall '21</td>
         </tr>
-        <tr data-grade="097" data-term="21C">
+        <tr>
             <td>MATH 245</td>
             <td>Linear Algebra II (Advanced Level)</td>
-            <td>97%</td>
-            <td>Fall '21</td>
+            <td sorttable_customkey="97">97%</td>
+            <td sorttable_customkey="2021.1">Fall '21</td>
         </tr>
-        <tr data-grade="100" data-term="21C">
+        <tr>
             <td>ECON 212</td>
             <td>Introduction to Game Theory</td>
-            <td>100%</td>
-            <td>Fall '21</td>
+            <td sorttable_customkey="100">100%</td>
+            <td sorttable_customkey="2021.1">Fall '21</td>
         </tr>
-        <tr data-grade="097" data-term="21B">
+        <tr>
             <td>MATH 247</td>
             <td>Calculus III (Advanced Level)</td>
-            <td>97%</td>
-            <td>Spring '21</td>
+            <td sorttable_customkey="97">97%</td>
+            <td sorttable_customkey="2021.1">Spring '21</td>
         </tr>
-        <tr data-grade="093" data-term="21A">
+        <tr>
             <td>CS 146</td>
             <td>Elementary Algorithm Design and Data Abstraction (Advanced Level)</td>
-            <td>93%</td>
-            <td>Winter '21</td>
+            <td sorttable_customkey="93">93%</td>
+            <td sorttable_customkey="2021.1">Winter '21</td>
         </tr>
-        <tr data-grade="099" data-term="21A">
+        <tr>
             <td>MATH 146</td>
             <td>Linear Algebra I (Advanced level)</td>
-            <td>99%</td>
-            <td>Winter '21</td>
+            <td sorttable_customkey="99">99%</td>
+            <td sorttable_customkey="2021.1">Winter '21</td>
         </tr>
-        <tr data-grade="090" data-term="21A">
+        <tr>
             <td>MATH 148</td>
             <td>Calculus II (Advanced Level)</td>
-            <td>90%</td>
-            <td>Winter '21</td>
+            <td sorttable_customkey="90">90%</td>
+            <td sorttable_customkey="2021.1">Winter '21</td>
         </tr>
-        <tr data-grade="100" data-term="21A">
+        <tr>
             <td>MATH 249</td>
             <td>Introduction to Combinatorics (Advanced Level)</td>
-            <td>100%</td>
-            <td>Winter '21</td>
+            <td sorttable_customkey="100">100%</td>
+            <td sorttable_customkey="2021.1">Winter '21</td>
         </tr>
-        <tr data-grade="091" data-term="21A">
+        <tr>
             <td>ECON 101</td>
             <td>Introduction to Microeconomics</td>
-            <td>91%</td>
-            <td>Winter '21</td>
+            <td sorttable_customkey="91">91%</td>
+            <td sorttable_customkey="2021.1">Winter '21</td>
         </tr>
-        <tr data-grade="085" data-term="21A">
+        <tr>
             <td>SPCOM 225</td>
             <td>Interviewing</td>
-            <td>85%</td>
-            <td>Winter '21</td>
+            <td sorttable_customkey="85">85%</td>
+            <td sorttable_customkey="2021.1">Winter '21</td>
         </tr>
-        <tr data-grade="094" data-term="20C">
+        <tr>
             <td>CS 145</td>
             <td>Designing Functional Programs (Advanced Level)</td>
-            <td>94%</td>
-            <td>Fall '20</td>
+            <td sorttable_customkey="94">94%</td>
+            <td sorttable_customkey="2020.1">Fall '20</td>
         </tr>
-        <tr data-grade="098" data-term="20C">
+        <tr>
             <td>MATH 145</td>
             <td>Algebra (Advanced Level)</td>
-            <td>98%</td>
-            <td>Fall '20</td>
+            <td sorttable_customkey="98">98%</td>
+            <td sorttable_customkey="2020.1">Fall '20</td>
         </tr>
-        <tr data-grade="100" data-term="20C">
+        <tr>
             <td>MATH 147</td>
             <td>Calculus I (Advanced Level)</td>
-            <td>100%</td>
-            <td>Fall '20</td>
+            <td sorttable_customkey="100">100%</td>
+            <td sorttable_customkey="2020.1">Fall '20</td>
         </tr>
-        <tr data-grade="092" data-term="20C">
+        <tr>
             <td>PHYS 121</td>
             <td>Mechanics</td>
-            <td>92%</td>
-            <td>Fall '20</td>
+            <td sorttable_customkey="92">92%</td>
+            <td sorttable_customkey="2020.1">Fall '20</td>
         </tr>
-        <tr data-grade="086" data-term="20C">
+        <tr>
             <td>ENGL 109</td>
             <td>Introduction to Academic Writing</td>
-            <td>86%</td>
-            <td>Fall '20</td>
+            <td sorttable_customkey="86">86%</td>
+            <td sorttable_customkey="2020.1">Fall '20</td>
         </tr>
     </tbody>
 </table>
