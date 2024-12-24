@@ -12,13 +12,13 @@ I am pursuing a double major in computer science & statistics at the University 
 
 Here are the courses I have taken or am currently taking at the University of Waterloo, along with the grades I earned in each course.
 
-<table class="sortable">
+<table class="sortable" id="courseTable">
     <thead>
         <tr>
-            <th>Course Code</th>
+            <th class="sorttable_numeric">Course Code</th>
             <th>Course Title</th>
-            <th>Grade</th>
-            <th>Term</th>
+            <th class="sorttable_numeric">Grade</th>
+            <th class="sorttable_numeric">Term</th>
         </tr>
     </thead>
     <tbody>
@@ -294,3 +294,13 @@ Here are the courses I have taken or am currently taking at the University of Wa
         </tr>
     </tbody>
 </table>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof sorttable === 'undefined') {
+      console.error('Sorttable script not loaded');
+    } else {
+      console.log('Sorttable script loaded successfully');
+    }
+  });
+</script>
