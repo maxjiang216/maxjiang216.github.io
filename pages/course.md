@@ -3,7 +3,7 @@ layout: default
 title: "Coursework"
 permalink: /course/
 scripts:
-  - "https://www.kryogenix.org/code/browser/sorttable/sorttable.js"
+  - "https://cdnjs.cloudflare.com/ajax/libs/sort-table/0.0.11/sort-table.min.js"
 ---
 
 # Coursework
@@ -15,7 +15,7 @@ Here are the courses I have taken or am currently taking at the University of Wa
 <table class="sortable" id="courseTable">
     <thead>
         <tr>
-            <th class="sorttable_numeric">Course Code</th>
+            <th>Course Code</th>
             <th>Course Title</th>
             <th class="sorttable_numeric">Grade</th>
             <th class="sorttable_numeric">Term</th>
