@@ -35,17 +35,15 @@ Setting these equal to zero and solving gives the formula for simple linear regr
 \\[\beta=\frac{\sum_i(x_i-\bar{x})(y_i-\bar{y})}{\sum_i(x_i-\bar{x})^2}\\]
 
 2. We wish to minimize the sum of squared errors
-\\[(y-X\beta)^\perp(y-X\beta)\\]
+\\[(y-X\beta)^\intercal(y-X\beta)\\]
 
 We expand this to get
-\\[(y-X\beta)^\perp(y-X\beta)=y^Ty-y^\perpX\beta-(X\beta)^\perp y+X\beta^\perpX\beta=y^Ty-2y^\perpX\beta+X\beta^\perpX\beta\\]
-since $$y^\perpX\beta$$ and $$(X\beta)^\perp y$$ are both scalars.
+\\[(y-X\beta)^\intercal(y-X\beta)=y^Ty-y^\intercal X\beta-(X\beta)^\intercal y+X\beta^\intercal X\beta=y^Ty-2y^\intercal X\beta+X^\intercal\beta^\intercal X\beta\\]
+since $$y^\intercal X\beta$$ and $$(X\beta)^\intercal y$$ are both scalars.
 
 The derivative of this expression with respect to $$\beta$$ is
-\\[-2X^Ty+2X^TX\beta\\]
-Setting this equal to zero gives
-\\[\beta=(X^TX)^{-1}X^Ty\\]
+\\[-2y^\intercal X+2X^\intercal X\beta\\]
 The normal equation is
-\\[(X^TX)^{-1}X^TX\beta=X^Ty\\]
+\\[(X^\intercal X)\beta=X^\intercal y\\]
 Solving this gives the formula for multiple linear regression, which is
-\\[\beta=(X^TX)^{-1}X^Ty.\\]
+\\[\beta=(X^\intercal X)^{-1}X^\intercal y.\\]
