@@ -35,10 +35,17 @@ Setting these equal to zero and solving gives the formula for simple linear regr
 \\[\beta=\frac{\sum_i(x_i-\bar{x})(y_i-\bar{y})}{\sum_i(x_i-\bar{x})^2}\\]
 
 2. We wish to minimize the sum of squared errors
-\\[(y-X\beta)^T(y-X\beta)\\]
+\\[(y-X\beta)^\perp(y-X\beta)\\]
 
-Computing the partial derivatives with respect to $$\beta$$ gives
-\\[\frac{\partial}{\partial\beta}(y-X\beta)^T(y-X\beta)=-2X^T(y-X\beta)\\]
+We expand this to get
+\\[(y-X\beta)^\perp(y-X\beta)=y^Ty-y^\perpX\beta-(X\beta)^\perp y+X\beta^\perpX\beta=y^Ty-2y^\perpX\beta+X\beta^\perpX\beta\\]
+since $$y^\perpX\beta$$ and $$(X\beta)^\perp y$$ are both scalars.
 
-Setting this equal to zero and solving gives the formula for multiple linear regression, which is
+The derivative of this expression with respect to $$\beta$$ is
+\\[-2X^Ty+2X^TX\beta\\]
+Setting this equal to zero gives
 \\[\beta=(X^TX)^{-1}X^Ty\\]
+The normal equation is
+\\[(X^TX)^{-1}X^TX\beta=X^Ty\\]
+Solving this gives the formula for multiple linear regression, which is
+\\[\beta=(X^TX)^{-1}X^Ty.\\]
